@@ -31,7 +31,12 @@ session_start();
 </head>
 
 <body class="body">
-
+    <?php
+if(!$_SESSION['type'] == "Administrator") {
+    header("location:../index.php");
+    exit();
+}
+ ?>
     <!-- Navigation bar -->
 
     <div>
