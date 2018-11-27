@@ -1,0 +1,38 @@
+@import url("font.css");
+
+.body {
+    background-color: #ffffff;
+    font-family: RobotoSlab-Regular;
+    padding: 10px;
+    scroll-behavior: smooth;
+}
+
+.heading {
+    font-size: 40px;
+    margin: 20%;
+}
+
+.border {
+    margin: 10%;
+    width: 80%;
+    height: 40%;
+    border-radius: 5%;
+    padding: 08%;
+}
+
+.btn {
+    background-color: #0097e6;
+    color: black;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+input:hover {
+    border-color: #0097e6;
+}
+
+.fas {
+    color: #0097e6;
+}
