@@ -43,7 +43,7 @@ if(!$_SESSION['type'] == "Administrator") {
         <nav class="navbar navbar-expand-lg navbar-light shadow fixed-top">
             <a class="navbar-brand" href="#"><img class="float-left" src="../assets/images/tray.png" style="width:3%;">Administrator</a>
                 <form class="form-group" action="../log/logout.php" method="POST">
-                    <button name="submit" type="submit" class="btn text-dark">Logout</button>
+                <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i> Logout</button>
                 </form>
                 
         </nav>

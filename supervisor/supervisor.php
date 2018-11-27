@@ -40,7 +40,7 @@ if (!$_SESSION['type'] == "supervisor") {
         <nav class="navbar navbar-expand-sm navbar-light shadow fixed-top">
             <a class="navbar-brand" href="#"><img class="float-left" src="../assets/images/tray.png" style="width:3%;">Supervisor</a>
                 <form class="form-group" action="../log/logout.php" method="POST">
-                    <button name="submit" type="submit" class="btn text-dark float-right">Logout</button>
+                <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i> Logout</button>
                 </form>
         </nav>
     </div>
