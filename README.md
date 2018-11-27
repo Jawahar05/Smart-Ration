@@ -1,3 +1,3 @@
 # smartration
 
-# Hello world, I'm here developing a PHP project.
+#Hello Team, A fully automizing php store and managing console website
