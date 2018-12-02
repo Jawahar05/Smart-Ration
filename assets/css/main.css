@@ -33,6 +33,34 @@ input:hover {
     border-color: #0097e6;
 }
 
-.fas {
+.fas{
     color: #0097e6;
+}
+
+.padding {
+    padding-top:80px;
+}
+
+.panel {
+    background-color: #ffffff;
+    color: black;
+}
+
+.btn-panel {
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 18px;
+    text-align: center;
+    margin: 3%;
+    padding: 3%;
+    padding-right: 30%; 
+}
+
+.btn-panel:hover {
+    background-color: #ffffff;
+    border: 2px solid #b2bec3;
+}
+
+.panel-fa {
+    color: #636e72;
 }

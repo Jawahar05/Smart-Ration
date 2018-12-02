@@ -58,11 +58,11 @@ session_start();
                         </div>
                         <div class="form-group py-4">
                             <label for="user_id"><i class="fas fa-id-badge fa-lg"></i> User Name</label>
-                            <input name="username" type="text" class="form-control" id="user_id" placeholder="Enter User Name">
+                            <input name="username" type="text" class="form-control" id="user_id" placeholder="Enter User Name" required>
                         </div>
                         <div class="form-group">
                             <label for="password"><i class="fas fa-unlock-alt fa-lg"></i> Password</label>
-                            <input name="password" type="password" class="form-control" id="password" placeholder="Enter Password">
+                            <input name="password" type="password" class="form-control" id="password" placeholder="Enter Password" required>
                         </div>
                         <button name="submit" type="submit" class="btn">Submit</button>
                         <p class="text-center"><a href="./development.php">Forget Password.?</a></p>
