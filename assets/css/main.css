@@ -1,5 +1,4 @@
 @import url("font.css");
-
 .body {
     background-color: #ffffff;
     font-family: RobotoSlab-Regular;
@@ -21,7 +20,7 @@
 }
 
 .btn {
-    background-color: #0097e6;
+    background-color: #28B2FC;
     color: black;
 }
 
@@ -33,12 +32,12 @@ input:hover {
     border-color: #0097e6;
 }
 
-.fas{
+.fas {
     color: #0097e6;
 }
 
 .padding {
-    padding-top:80px;
+    padding-top: 80px;
 }
 
 .panel {
@@ -53,7 +52,7 @@ input:hover {
     text-align: center;
     margin: 3%;
     padding: 3%;
-    padding-right: 30%; 
+    padding-right: 30%;
 }
 
 .btn-panel:hover {
@@ -63,4 +62,17 @@ input:hover {
 
 .panel-fa {
     color: #636e72;
+}
+
+.filterDiv {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.container-filter {
+    margin-top: 20px;
+    overflow: hidden;
 }

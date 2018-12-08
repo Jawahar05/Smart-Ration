@@ -5,8 +5,8 @@
 
     <!-- PHP Session -->
     <?php
-    session_start();
-    ?>
+session_start();
+?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
@@ -38,7 +38,7 @@
 //     header("location:../index.php");
 //     exit();
 // }
-    ?>
+ ?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -50,8 +50,8 @@
                         <a class="navbar-brand" href="../index.php"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
                             Admin</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../admin/admin.php">Home<span class="sr-only"></span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../admin/admin.php">Home<span class="sr-only" (current)></span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/workers.php">Workers</a>
@@ -62,7 +62,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/calendar.php">Calendar</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="../admin/stocks&stores.php">Stores & Stocks</a>
                     </li>
                 </ul>
