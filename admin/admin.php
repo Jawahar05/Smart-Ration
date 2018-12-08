@@ -2,9 +2,9 @@
 <html>
 
 <head>
-    
-<!-- PHP Session -->
-<?php
+
+    <!-- PHP Session -->
+    <?php
 session_start();
 ?>
 
@@ -38,19 +38,146 @@ if(!$_SESSION['type'] == "Administrator") {
 }
  ?>
     <!-- Navigation bar -->
-
     <div>
-        <nav class="navbar navbar-expand-lg navbar-light shadow fixed-top">
-            <a class="navbar-brand" href="#"><img class="float-left" src="../assets/images/tray.png" style="width:3%;">Administrator</a>
-                <form class="form-group" action="../log/logout.php" method="POST">
-                <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i> Logout</button>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
+
+            <div>
+                <!-- navbar items -->
+                <ul class="navbar-nav nav-color">
+                    <li>
+                        <a class="navbar-brand" href="#"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
+                            Admin</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home<span class="sr-only" (current)></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Workers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Stores & Stocks</a>
+                    </li>
+                    </ui>
+
+            </div>
+            <div>
+                <form class="form-group form-inline" action="../log/logout.php" method="POST">
+                    <a class="mr-3"><i class="fas fa-bell" style="size:20px;"></i></a>
+                    <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i>
+                        Logout</button>
                 </form>
-                
+            </div>
         </nav>
     </div>
-    <!-- <div>
-        <h1 class="text-center">Admin</h1>
-    </div> -->
+
+    <!-- Home -->
+
+    <!-- Workers -->
+    <div id="workers" class="padding">
+        <div class="row">
+            <!-- Panel -->
+            <div id="worker_panel" class="col-sm-2 panel">
+                <form>
+                    <button name="new_worker" class="btn-panel"><i class="ml-2 fas fa-user-alt panel-fa mr-3"></i>Add
+                        New</button>
+                    <button name="modify_worker" class="btn-panel"><i class="ml-2 fas fa-sync-alt panel-fa mr-3"></i>Modify</button>
+                    <button name="remove_worker" class="btn-panel"><i class="ml-2 fas fa-user-slash panel-fa mr-3"></i>Remove</button>
+                </form>
+            </div>
+
+            <!-- add new workers -->
+            <div id="new_worker" class="col-sm-9">
+                <div>
+                    <form class="mt-3">
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="firstname" class="form-control" placeholder="First Name"
+                                    required>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="lastname" class="form-control" placeholder="Last Name"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Password</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="password" name="password" class="form-control" placeholder="Auto generatable"
+                                    required disabled>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Mobile Number</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="number" class="form-control" placeholder="Mobile Number"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="email" name="email" class="form-control" placeholder="Email Id" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Position</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="postion" placeholder="Position" required>
+                                    <option disabled selected>Select Position</option>
+                                    <option>Supervisor</option>
+                                    <option>Supplier</option>
+                                    <option>Administrator</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>District</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="postion" placeholder="Position" required>
+                                    <option disabled selected>Select District</option>
+                                    <option>Madurai</option>
+                                    <option>Erode</option>
+                                    <option>Coimbatore</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Store Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="storeno" class="form-control" placeholder="Store Name"
+                                    required>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <button type="submit" name="Submit" class="btn">Submit</button>
+                            </div>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
 
 </html>
