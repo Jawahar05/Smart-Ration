@@ -34,10 +34,10 @@ session_start();
 
 <body class="body">
     <?php
-// if(!$_SESSION['type'] == "Administrator") {
-//     header("location:../index.php");
-//     exit();
-// }
+if(!$_SESSION['type'] == "Administrator") {
+    header("location:../index.php");
+    exit();
+}
  ?>
     <!-- Navigation bar -->
     <div>
@@ -51,7 +51,7 @@ session_start();
                             Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/admin.php">Home<span class="sr-only" (current)></span></a>
+                        <a class="nav-link" href="../admin/home.php">Home<span class="sr-only" (current)></span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/workers.php">Workers</a>
@@ -66,8 +66,6 @@ session_start();
                         <a class="nav-link" href="../admin/stocks&stores.php">Stores & Stocks</a>
                     </li>
                 </ul>
-
-
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
@@ -77,6 +75,180 @@ session_start();
                 </form>
             </div>
         </nav>
+    </div>
+    <div id="cards" class="padding">
+        <div class="row">
+
+            <!-- **************************************************** -->
+            <!-- **************** left Panel *********************-->
+            <!-- **************************************************** -->
+
+            <div id="myBtnContainer" class="col-sm-2 panel">
+                <button class="btn-panel" onclick="filterSelection('stocks')"><i class="ml-2 fas fa-user-alt panel-fa mr-3"></i>
+                    Stocks</button>
+                <button class="btn-panel" onclick="filterSelection('stores')"><i class="ml-2 fas fa-sync-alt panel-fa mr-3"></i>Stores</button>
+                <button class="btn-panel" onclick="filterSelection('allocate')"><i class="ml-2 fas fa-user-slash panel-fa mr-3"></i>Allocate</button>
+            </div>
+
+            <!-- **************************************************** -->
+            <!-- **************** stocks *********************-->
+            <!-- **************************************************** -->
+            <div id="addnewcards" class="col-sm-9">
+                <div class="filterDiv stocks">
+                    <div class="col-sm-9 pb-3">
+                        <button class="btn-menu">Check stocks</button>
+                        <button class="btn-menu ml-2">Update stocks</button>
+                        <button class="btn-menu ml-2">New items</button>
+                        <button class="btn-menu ml-2">Edit items</button>
+                    </div>
+                    <form class="mt-3">
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="firstname" class="form-control" placeholder="First Name"
+                                    required>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="lastname" class="form-control" placeholder="Last Name"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Mobile Number</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="number" class="form-control" placeholder="Mobile Number"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="adddress-doorno" class="form-control" placeholder="Door number"
+                                    required>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="adddress-street" class="form-control" placeholder="Street name"
+                                    required>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="adddress-town" class="form-control" placeholder="Town name"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>District</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="postion" placeholder="Position" required>
+                                    <option disabled selected>Select District</option>
+                                    <option>Madurai</option>
+                                    <option>Erode</option>
+                                    <option>Coimbatore</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Members Count</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="members" class="form-control" placeholder="Number  of members"
+                                    required>
+                            </div>
+
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Card type</label>
+                            </div>
+                            <div class="col-sm-3 form-check">
+                                <input class="form-check-input" type="radio" name="cardtype" id="commodity" value="commodity"
+                                    checked>
+                                <label class="form-check-label" for="commodity" style="font-weight:normal;">
+                                    Commodity Card
+                                </label>
+                            </div>
+                            <div class="col-sm-3 form-check">
+                                <input class="form-check-input" type="radio" name="cardtype" id="sugar" value="sugar">
+                                <label class="form-check-label" for="sugar" style="font-weight:normal;">
+                                    Sugar Card
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-3 text-center">
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <button type="submit" name="Submit" class="btn">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <!-- **************************************************** -->
+                <!-- **************** Stores *********************-->
+                <!-- **************************************************** -->
+
+                <div id="modifycards" class="filterDiv stores">
+                        <div class="col-sm-9 pb-3">
+                                <button class="btn-menu">Add stores</button>
+                                <button class="btn-menu ml-2">Modify Stores</button>
+                                <button class="btn-menu ml-2">Remove Stores</button>
+                            </div>
+                    <form class="mt-3">
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Card Number</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="cardnumber" class="form-control" placeholder="Card number to modify"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <button type="submit" name="Submit" class="btn">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- **************************************************** -->
+                <!-- **************** Allocate products *********************-->
+                <!-- **************************************************** -->
+
+                <div id="removeworker" class="filterDiv allocate">
+                    <form class="mt-3">
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Card Number</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="nameid" class="form-control" placeholder="Card Number to remove"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <button type="submit" name="Submit" class="btn">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

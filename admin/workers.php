@@ -34,10 +34,10 @@ session_start();
 
 <body class="body">
     <?php
-// if(!$_SESSION['type'] == "Administrator") {
-//     header("location:../index.php");
-//     exit();
-// }
+if(!$_SESSION['type'] == "Administrator") {
+    header("location:../index.php");
+    exit();
+}
  ?>
     <!-- Navigation bar -->
     <div>
@@ -51,7 +51,7 @@ session_start();
                             Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/admin.php">Home<span class="sr-only" (current)></span></a>
+                        <a class="nav-link" href="../admin/home.php">Home<span class="sr-only" (current)></span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="../admin/workers.php">Workers</a>
@@ -100,18 +100,18 @@ session_start();
 
             <div id="addnewworker" class="col-sm-9">
                 <div  class="filterDiv new">
-                    <form class="mt-3">
+                    <form id="newworker" name="newworker" class="mt-3" action="#" onsubmit="return validateForm()">
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label>Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="firstname" class="form-control" placeholder="First Name"
-                                    required>
+                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name" onmouseout="return validateName();" required>
+                                    <span id="firstnamemsg"></span>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="lastname" class="form-control" placeholder="Last Name"
-                                    required>
+                                <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Last Name" required>
+                                <span id="lastnamemsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -119,8 +119,8 @@ session_start();
                                 <label>Password</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="pass" type="password" name="password" class="form-control" placeholder="Password"
-                                    required onmouseover="show()" onmouseout="hide()">
+                                <input id="password" type="password" name="password" class="form-control" placeholder="Password" required>
+                                <span id="passwordmsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -128,8 +128,8 @@ session_start();
                                 <label>Mobile Number</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="number" class="form-control" placeholder="Mobile Number"
-                                    required>
+                                <input id="mobilenumber" type="text" name="number" class="form-control" placeholder="Mobile Number" required>
+                                <span id="mobilenumbermsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -137,7 +137,8 @@ session_start();
                                 <label>Email</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="email" name="email" class="form-control" placeholder="Email Id" required>
+                                <input id="email" type="email" name="email" class="form-control" placeholder="Email Id" required>
+                                <span id="emailmsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -145,12 +146,13 @@ session_start();
                                 <label>Position</label>
                             </div>
                             <div class="col-sm-3">
-                                <select class="form-control" name="postion" placeholder="Position" required>
+                                <select id="position" class="form-control" name="postion" placeholder="Position" required>
                                     <option disabled selected>Select Position</option>
                                     <option>Supervisor</option>
                                     <option>Supplier</option>
                                     <option>Administrator</option>
                                 </select>
+                                <span id="positionmsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -158,12 +160,13 @@ session_start();
                                 <label>District</label>
                             </div>
                             <div class="col-sm-3">
-                                <select class="form-control" name="postion" placeholder="Position" required>
+                                <select id="district" class="form-control" name="postion" placeholder="Position" required>
                                     <option disabled selected>Select District</option>
                                     <option>Madurai</option>
                                     <option>Erode</option>
                                     <option>Coimbatore</option>
                                 </select>
+                                <span id="districtmsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -171,11 +174,11 @@ session_start();
                                 <label>Store Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="storename" class="form-control" placeholder="Store Name"
-                                    required>
+                                <input id="storename" type="text" name="storename" class="form-control" placeholder="Store Name" required>
+                                <span id="storenamemsg"></span>
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button type="submit" name="submit" value="submit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>

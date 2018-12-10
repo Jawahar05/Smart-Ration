@@ -48,6 +48,8 @@ input:hover {
 .btn-panel {
     background-color: #ffffff;
     border: 2px solid #ffffff;
+    font-size: 17.6px;
+    font-weight: 500;
     border-radius: 18px;
     text-align: center;
     margin: 3%;
@@ -75,4 +77,29 @@ input:hover {
 .container-filter {
     margin-top: 20px;
     overflow: hidden;
+}
+
+span {
+    color: red;
+    font-size: 15px;
+}
+
+label {
+    font-weight: 600    ;
+}
+
+a {
+    font-size: 18px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.btn-menu {
+    border: 2px solid #0097e6;
+    background-color: #0097e6;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 18px;
+    text-align: center;
 }

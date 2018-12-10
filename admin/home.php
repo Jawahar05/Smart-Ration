@@ -34,10 +34,10 @@
 
 <body class="body">
     <?php
-// if(!$_SESSION['type'] == "Administrator") {
-//     header("location:../index.php");
-//     exit();
-// }
+if(!$_SESSION['type'] == "Administrator") {
+    header("location:../index.php");
+    exit();
+}
     ?>
     <!-- Navigation bar -->
     <div>
@@ -51,7 +51,7 @@
                             Admin</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="../admin/admin.php">Home<span class="sr-only"></span></a>
+                        <a class="nav-link" href="../admin/home.php">Home<span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/workers.php">Workers</a>

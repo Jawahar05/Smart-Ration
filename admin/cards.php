@@ -34,10 +34,10 @@ session_start();
 
 <body class="body">
     <?php
-// if(!$_SESSION['type'] == "Administrator") {
-//     header("location:../index.php");
-//     exit();
-// }
+if(!$_SESSION['type'] == "Administrator") {
+    header("location:../index.php");
+    exit();
+}
  ?>
     <!-- Navigation bar -->
     <div>
@@ -51,7 +51,7 @@ session_start();
                             Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/admin.php">Home<span class="sr-only" (current)></span></a>
+                        <a class="nav-link" href="../admin/home.php">Home<span class="sr-only" (current)></span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/workers.php">Workers</a>
@@ -89,10 +89,10 @@ session_start();
             <!-- **************************************************** -->
 
             <div id="myBtnContainer" class="col-sm-2 panel">
-                    <button class="btn-panel" onclick="filterSelection('new')"><i class="ml-2 fas fa-user-alt panel-fa mr-3"></i>Add
-                        New</button>
-                    <button class="btn-panel" onclick="filterSelection('modify')"><i class="ml-2 fas fa-sync-alt panel-fa mr-3"></i>Modify</button>
-                    <button class="btn-panel" onclick="filterSelection('remove')"><i class="ml-2 fas fa-user-slash panel-fa mr-3"></i>Remove</button>
+                <button class="btn-panel" onclick="filterSelection('new')"><i class="ml-2 fas fa-user-alt panel-fa mr-3"></i>Add
+                    New</button>
+                <button class="btn-panel" onclick="filterSelection('modify')"><i class="ml-2 fas fa-sync-alt panel-fa mr-3"></i>Modify</button>
+                <button class="btn-panel" onclick="filterSelection('remove')"><i class="ml-2 fas fa-user-slash panel-fa mr-3"></i>Remove</button>
             </div>
 
             <!-- **************************************************** -->
@@ -100,7 +100,7 @@ session_start();
             <!-- **************************************************** -->
 
             <div id="addnewcards" class="col-sm-9">
-                <div  class="filterDiv new">
+                <div class="filterDiv new">
                     <form class="mt-3">
                         <div class="row form-group">
                             <div class="col-sm-2">
@@ -117,15 +117,6 @@ session_start();
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Password</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <input id="pass" type="password" name="password" class="form-control" placeholder="Password"
-                                    required onmouseover="show()" onmouseout="hide()">
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-sm-2">
                                 <label>Mobile Number</label>
                             </div>
                             <div class="col-sm-3">
@@ -135,18 +126,19 @@ session_start();
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <input type="email" name="email" class="form-control" placeholder="Email Id" required>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-sm-2">
                                 <label>Address</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="adddress" class="form-control" placeholder=" Residential address" required>
+                                <input type="text" name="adddress-doorno" class="form-control" placeholder="Door number"
+                                    required>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="adddress-street" class="form-control" placeholder="Street name"
+                                    required>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="adddress-town" class="form-control" placeholder="Town name"
+                                    required>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -164,11 +156,34 @@ session_start();
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Store Name</label>
+                                <label>Members Count</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="storename" class="form-control" placeholder="Store Name"
+                                <input type="text" name="members" class="form-control" placeholder="Number  of members"
                                     required>
+                            </div>
+
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Card type</label>
+                            </div>
+                            <div class="col-sm-3 form-check pl-5">
+                                <input class="form-check-input" type="radio" name="cardtype" id="commodity" value="commodity"
+                                    checked>
+                                <label class="form-check-label" for="commodity" style="font-weight:normal;">
+                                    Commodity Card
+                                </label>
+                            </div>
+                            <div class="col-sm-3 form-check pl-5">
+                                <input class="form-check-input" type="radio" name="cardtype" id="sugar" value="sugar">
+                                <label class="form-check-label" for="sugar" style="font-weight:normal;">
+                                    Sugar Card
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-3 text-center">
                             </div>
                             <div class="col-sm-3 text-center">
                                 <button type="submit" name="Submit" class="btn">Submit</button>

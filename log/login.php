@@ -25,13 +25,13 @@ if (isset($_POST['submit'])) {
                 $_SESSION['status'] = "active";
                 //authorizing
                 if ($_SESSION['type'] == "Administrator") {
-                    header("location:../admin/admin.php");
+                    header("location:../admin/home.php");
                     exit();
                 } else if ($_SESSION['type'] == "Supplier") {
-                    header("Location:../supplier/supplier.php");
+                    header("Location:../supplier/home.php");
                     exit();
                 } else if ($_SESSION['type'] == "Supervisor") {
-                    header("Location:../supervisor/supervisor.php");
+                    header("Location:../supervisor/home.php");
                     exit();
                 }
 
