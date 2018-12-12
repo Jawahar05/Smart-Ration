@@ -54,7 +54,7 @@ input:hover {
     text-align: center;
     margin: 3%;
     padding: 3%;
-    padding-right: 30%;
+    padding-right: 15%;
 }
 
 .btn-panel:hover {
@@ -89,17 +89,33 @@ label {
 }
 
 a {
+    text-decoration: none;
     font-size: 18px;
     font-weight: 500;
     color: #2c3e50;
 }
 
 .btn-menu {
+    text-decoration: none;
     border: 2px solid #0097e6;
     background-color: #0097e6;
     color: #ffffff;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 18px;
+    border-left-width: 20px;
+    border-right-width: 20px;
     text-align: center;
+    font-size: 15px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.btn-menu:hover {
+    color: black;
+}
+
+.home-textarea {
+    height: 100%;
+    width: 80%;
+    text-align: center;
+    font-weight: 500;
+    resize: none;
 }

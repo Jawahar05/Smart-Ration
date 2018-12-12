@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- refera links -->
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css" />
-    <link rel="shortcut icon" type="media/image" media="screen" href="../assets/images/tray.png">
+    <link rel="shortcut icon" type="media/image" media="screen" href="../assets/images/logo.png">
     <!-- Bootstrap css and scripts referals -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
@@ -77,6 +77,9 @@ if(!$_SESSION['type'] == "Administrator") {
                 </form>
             </div>
         </nav>
+    </div>
+    <div class="padding container-liquid text-center">
+    <textarea class="home-textarea" placeholder="Notifications and important updates..!!" readonly></textarea>
     </div>
 </body>
 

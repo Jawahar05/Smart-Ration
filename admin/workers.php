@@ -15,7 +15,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- refera links -->
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css" />
-    <link rel="shortcut icon" type="media/image" media="screen" href="../assets/images/tray.png">
+    <link rel="shortcut icon" type="media/image" media="screen" href="../assets/images/logo.png">
     <!-- Bootstrap css and scripts referals -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
@@ -32,7 +32,7 @@ session_start();
     <script src="../assets/js/main.js"></script>
 </head>
 
-<body class="body">
+<body class="body" onload="filterSelection('new')">
     <?php
 if(!$_SESSION['type'] == "Administrator") {
     header("location:../index.php");
@@ -88,10 +88,10 @@ if(!$_SESSION['type'] == "Administrator") {
             <!-- **************************************************** -->
 
             <div id="myBtnContainer" class="col-sm-2 panel">
-                    <button class="btn-panel" onclick="filterSelection('new')"><i class="ml-2 fas fa-user-alt panel-fa mr-3"></i>Add
-                        New</button>
-                    <button class="btn-panel" onclick="filterSelection('modify')"><i class="ml-2 fas fa-sync-alt panel-fa mr-3"></i>Modify</button>
-                    <button class="btn-panel" onclick="filterSelection('remove')"><i class="ml-2 fas fa-user-slash panel-fa mr-3"></i>Remove</button>
+                <button class="btn-panel" onclick="filterSelection('new')"><i class="ml-2 fas fa-user-alt panel-fa mr-3"></i>Add
+                    New</button>
+                <button class="btn-panel" onclick="filterSelection('modify')"><i class="ml-2 fas fa-sync-alt panel-fa mr-3"></i>Modify</button>
+                <button class="btn-panel" onclick="filterSelection('remove')"><i class="ml-2 fas fa-user-slash panel-fa mr-3"></i>Remove</button>
             </div>
 
             <!-- **************************************************** -->
@@ -99,18 +99,20 @@ if(!$_SESSION['type'] == "Administrator") {
             <!-- **************************************************** -->
 
             <div id="addnewworker" class="col-sm-9">
-                <div  class="filterDiv new">
+                <div class="filterDiv new">
                     <form id="newworker" name="newworker" class="mt-3" action="#" onsubmit="return validateForm()">
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label>Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name" onmouseout="return validateName();" required>
-                                    <span id="firstnamemsg"></span>
+                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name"
+                                    onmouseout="return validateName();" required>
+                                <span id="firstnamemsg"></span>
                             </div>
                             <div class="col-sm-3">
-                                <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Last Name" required>
+                                <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Last Name"
+                                    required>
                                 <span id="lastnamemsg"></span>
                             </div>
                         </div>
@@ -119,7 +121,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label>Password</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="password" type="password" name="password" class="form-control" placeholder="Password" required>
+                                <input id="password" type="password" name="password" class="form-control" placeholder="Password"
+                                    required>
                                 <span id="passwordmsg"></span>
                             </div>
                         </div>
@@ -128,7 +131,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label>Mobile Number</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="mobilenumber" type="text" name="number" class="form-control" placeholder="Mobile Number" required>
+                                <input id="mobilenumber" type="text" name="number" class="form-control" placeholder="Mobile Number"
+                                    required>
                                 <span id="mobilenumbermsg"></span>
                             </div>
                         </div>
@@ -137,7 +141,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label>Email</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="email" type="email" name="email" class="form-control" placeholder="Email Id" required>
+                                <input id="email" type="email" name="email" class="form-control" placeholder="Email Id"
+                                    required>
                                 <span id="emailmsg"></span>
                             </div>
                         </div>
@@ -146,7 +151,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label>Position</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="position" class="form-control" name="postion" placeholder="Position" required>
+                                <select id="position" class="form-control" name="postion" placeholder="Position"
+                                    required>
                                     <option disabled selected>Select Position</option>
                                     <option>Supervisor</option>
                                     <option>Supplier</option>
@@ -160,7 +166,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label>District</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="district" class="form-control" name="postion" placeholder="Position" required>
+                                <select id="district" class="form-control" name="postion" placeholder="Position"
+                                    required>
                                     <option disabled selected>Select District</option>
                                     <option>Madurai</option>
                                     <option>Erode</option>
@@ -174,7 +181,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label>Store Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="storename" type="text" name="storename" class="form-control" placeholder="Store Name" required>
+                                <input id="storename" type="text" name="storename" class="form-control" placeholder="Store Name"
+                                    required>
                                 <span id="storenamemsg"></span>
                             </div>
                             <div class="col-sm-3 text-center">
@@ -236,7 +244,6 @@ if(!$_SESSION['type'] == "Administrator") {
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

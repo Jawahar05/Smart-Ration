@@ -14,7 +14,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- refera links -->
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css" />
-    <link rel="shortcut icon" type="media/image" media="screen" href="../assets/images/tray.png">
+    <link rel="shortcut icon" type="media/image" media="screen" href="../assets/images/logo.png">
     <!-- Bootstrap css and scripts referals -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
@@ -36,13 +36,46 @@ if (!$_SESSION['type'] == "supervisor") {
 }
 ?>
     <!-- Navigation bar -->
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm navbar-light shadow fixed-top">
-            <a class="navbar-brand" href="#"><img class="float-left" src="../assets/images/tray.png" style="width:3%;">Supervisor</a>
-                <form class="form-group" action="../log/logout.php" method="POST">
-                <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i> Logout</button>
+    <div>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
+
+            <div>
+                <!-- navbar items -->
+                <ul class="navbar-nav nav-color">
+                    <li>
+                        <a class="navbar-brand" href="../index.php"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
+                            Supervisor</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../supervisor/home.php">Home<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../supervisor/reservation.php">Reservation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../supervisor/cards.php">Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../supervisor/calendar.php">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../supervisor/stocks&stores.php">Stores & Stocks</a>
+                    </li>
+                </ul>
+
+
+            </div>
+            <div>
+                <form class="form-group form-inline" action="../log/logout.php" method="POST">
+                    <!-- <a class="mr-3"><i class="fas fa-bell" style="size:20px;"></i></a> -->
+                    <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i>
+                        Logout</button>
                 </form>
+            </div>
         </nav>
+    </div>
+    <div class="padding container-liquid text-center">
+    <textarea class="home-textarea" placeholder="Notifications and important updates..!!" readonly></textarea>
     </div>
 </body>
 </html>

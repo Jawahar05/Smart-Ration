@@ -1,5 +1,5 @@
 //filter content
-filterSelection("all")
+filterSelection("new")
 function filterSelection(c) {
     var x, i;
     x = document.getElementsByClassName("filterDiv");
@@ -33,8 +33,8 @@ function w3RemoveClass(element, name) {
 
 // Add active class to the current button (highlight it)
 var btnContainer = document.getElementById("myBtnContainer");
-var btns = btnContainer.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
+var btns = btnContainer.getElementsByClassName("btn-panel");
+for (var i = 0; i <= btns.length; i++) {
     btns[i].addEventListener("click", function () {
         var current = document.getElementsByClassName("active");
         current[0].className = current[0].className.replace(" active", "");
@@ -68,7 +68,7 @@ for (var i = 0; i < btns.length; i++) {
 //                 document.getElementById(z).style.borderColor = "red";
 //                 document.getElementById(z + "msg").innerHTML = z + " is required";
 //             }
-            
+
 //         }
 //          else if (y != "") {
 //             alert(x +" " + y + " value granted");

@@ -15,7 +15,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- refera links -->
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css" />
-    <link rel="shortcut icon" type="media/image" media="screen" href="../assets/images/tray.png">
+    <link rel="shortcut icon" type="media/image" media="screen" href="../assets/images/logo.png">
     <!-- Bootstrap css and scripts referals -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
@@ -32,7 +32,7 @@ session_start();
     <script src="../assets/js/main.js"></script>
 </head>
 
-<body class="body">
+<body class="body" onload="filterSelection('stocks')">
     <?php
 if(!$_SESSION['type'] == "Administrator") {
     header("location:../index.php");
@@ -84,10 +84,10 @@ if(!$_SESSION['type'] == "Administrator") {
             <!-- **************************************************** -->
 
             <div id="myBtnContainer" class="col-sm-2 panel">
-                <button class="btn-panel" onclick="filterSelection('stocks')"><i class="ml-2 fas fa-user-alt panel-fa mr-3"></i>
+                <button class="btn-panel" onclick="filterSelection('stocks')"><i class="ml-2 fas fa-chart-bar panel-fa mr-3"></i>
                     Stocks</button>
-                <button class="btn-panel" onclick="filterSelection('stores')"><i class="ml-2 fas fa-sync-alt panel-fa mr-3"></i>Stores</button>
-                <button class="btn-panel" onclick="filterSelection('allocate')"><i class="ml-2 fas fa-user-slash panel-fa mr-3"></i>Allocate</button>
+                <button class="btn-panel" onclick="filterSelection('stores')"><i class="ml-2 fas fa-landmark panel-fa mr-3"></i>Stores</button>
+                <button class="btn-panel" onclick="filterSelection('allocate')"><i class="ml-2 fas fa-balance-scale panel-fa mr-3"></i>Allocate</button>
             </div>
 
             <!-- **************************************************** -->
@@ -95,12 +95,6 @@ if(!$_SESSION['type'] == "Administrator") {
             <!-- **************************************************** -->
             <div id="addnewcards" class="col-sm-9">
                 <div class="filterDiv stocks">
-                    <div class="col-sm-9 pb-3">
-                        <button class="btn-menu">Check stocks</button>
-                        <button class="btn-menu ml-2">Update stocks</button>
-                        <button class="btn-menu ml-2">New items</button>
-                        <button class="btn-menu ml-2">Edit items</button>
-                    </div>
                     <form class="mt-3">
                         <div class="row form-group">
                             <div class="col-sm-2">
@@ -198,18 +192,19 @@ if(!$_SESSION['type'] == "Administrator") {
                 <!-- **************************************************** -->
 
                 <div id="modifycards" class="filterDiv stores">
-                        <div class="col-sm-9 pb-3">
-                                <button class="btn-menu">Add stores</button>
-                                <button class="btn-menu ml-2">Modify Stores</button>
-                                <button class="btn-menu ml-2">Remove Stores</button>
-                            </div>
-                    <form class="mt-3">
+                    <div class="row">
+                        <div>
+                            <a href="#" class="btn-menu" style="text-decoration: none;">New Store</a>
+                            <a href="#" class="btn-menu ml-2">Modify Store</a>
+                        </div>
+                    </div>
+                    <form class="mt-4">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Card Number</label>
+                                <label>Store Code</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="cardnumber" class="form-control" placeholder="Card number to modify"
+                                <input type="text" name="storecode" class="form-control" placeholder="Store code to modify"
                                     required>
                             </div>
                         </div>
@@ -228,21 +223,23 @@ if(!$_SESSION['type'] == "Administrator") {
                 <!-- **************************************************** -->
 
                 <div id="removeworker" class="filterDiv allocate">
-                    <form class="mt-3">
+                    <form id="allocate" name="allocate" class="mt-3" action="#">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Card Number</label>
+                                <label>District</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="nameid" class="form-control" placeholder="Card Number to remove"
+                                <select id="district" class="form-control" name="postion" placeholder="Position"
                                     required>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-sm-2">
+                                    <option disabled selected>Select District</option>
+                                    <option>Madurai</option>
+                                    <option>Erode</option>
+                                    <option>Coimbatore</option>
+                                </select>
+                                <span id="districtmsg"></span>
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button type="submit" name="submit" value="submit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>
