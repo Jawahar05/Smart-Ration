@@ -49,7 +49,7 @@ if (!$_SESSION['type'] == "supplier") {
                         <a class="navbar-brand" href="../index.php"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
                             Supplier</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="../supplier/home.php">Home<span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
@@ -58,7 +58,7 @@ if (!$_SESSION['type'] == "supplier") {
                     <li class="nav-item">
                         <a class="nav-link" href="../supplier/stocks.php">Stocks</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item  active">
                         <a class="nav-link" href="../supplier/notification.php">Notification</a>
                     </li>
                     <!-- <li class="nav-item">
@@ -77,25 +77,8 @@ if (!$_SESSION['type'] == "supplier") {
             </div>
         </nav>
     </div>
-    <div class="padding">
-        <form class="mt-3 text-center">
-            <div class="row form-group">
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-2">
-                    <label>Card Number</label>
-                </div>
-                <div class="col-sm-2">
-                    <input type="text" name="cardnumber" class="form-control" placeholder="Enter Card Number" required>
-                </div>
-                <div class="col-sm-1 text-center">
-                        <button type="submit" name="Submit" class="btn">Check</button>
-                    </div>
-            </div>
-            <div class="row form-group">
-                
-            </div>
-        </form>
+    <div class="padding container-liquid text-center">
+    <textarea class="home-textarea" placeholder="Notifications and important updates..!!" readonly></textarea>
     </div>
 </body>
 

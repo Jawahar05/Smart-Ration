@@ -5,13 +5,13 @@
 
     <!-- PHP Session -->
     <?php
-    session_start();
-    ?>
+session_start();
+?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin - Smart Ration</title>
+    <title>Supervisor - Smart Ration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- refera links -->
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css" />
@@ -30,15 +30,16 @@
         crossorigin="anonymous">
     <!-- local script -->
     <script src="../assets/js/main.js"></script>
+
 </head>
 
 <body class="body" onload="filterSelection('new')">
     <?php
-    if (!$_SESSION['type'] == "Administrator") {
-        header("location:../index.php");
-        exit();
-    }
-    ?>
+if (!$_SESSION['type'] == "supervisor") {
+    header("location:../index.php");
+    exit();
+}
+?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -48,22 +49,22 @@
                 <ul class="navbar-nav nav-color">
                     <li>
                         <a class="navbar-brand" href="../index.php"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
-                            Admin</a>
+                            Supervisor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/home.php">Home<span class="sr-only" (current)></span></a>
+                        <a class="nav-link" href="../supervisor/home.php">Home<span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/workers.php">Workers</a>
+                        <a class="nav-link" href="../supervisor/reservation.php">Reservation</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="../admin/cards.php">Cards</a>
+                        <a class="nav-link" href="../supervisor/cards.php">Cards</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/calendar.php">Calendar</a>
+                        <a class="nav-link" href="../supervisor/calendar.php">Calendar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/stocks&stores.php">Stores & Stocks</a>
+                        <a class="nav-link" href="../supervisor/stocks&stores.php">Stores & Stocks</a>
                     </li>
                 </ul>
 
@@ -78,9 +79,10 @@
             </div>
         </nav>
     </div>
-    <!-- **************************************************** -->
-    <!-- ****************Nav item Workers *********************-->
-    <!-- **************************************************** -->
+
+
+    <!-- Body content -->
+
     <div id="cards" class="padding">
         <div class="row">
 
@@ -139,19 +141,6 @@
                             <div class="col-sm-3">
                                 <input type="text" name="adddress-town" class="form-control" placeholder="Town name"
                                     required>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-sm-2">
-                                <label>District</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <select class="form-control" name="district" placeholder="district" required>
-                                    <option disabled selected>Select District</option>
-                                    <option>Madurai</option>
-                                    <option>Erode</option>
-                                    <option>Coimbatore</option>
-                                </select>
                             </div>
                         </div>
                         <div class="row form-group">

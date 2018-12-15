@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2018 at 07:00 AM
+-- Generation Time: Dec 15, 2018 at 08:04 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -44,7 +44,8 @@ CREATE TABLE `cards` (
   `wheat` tinyint(1) NOT NULL DEFAULT '0',
   `date_joined` date NOT NULL,
   `reservation_date` date NOT NULL,
-  `reservation_status` tinyint(1) NOT NULL DEFAULT '0'
+  `reservation_status` tinyint(1) NOT NULL DEFAULT '0',
+  `reservation_set` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

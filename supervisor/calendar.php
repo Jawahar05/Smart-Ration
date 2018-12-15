@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-    <!-- PHP Session -->
-    <?php
+    
+<!-- PHP Session -->
+<?php
 session_start();
 ?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Supplier - Smart Ration</title>
+    <title>Supervisor - Smart Ration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- refera links -->
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css" />
@@ -29,11 +28,9 @@ session_start();
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
 </head>
-
 <body class="body">
-    <!-- php check -->
-    <?php
-if (!$_SESSION['type'] == "supplier") {
+<?php
+if (!$_SESSION['type'] == "supervisor") {
     header("location:../index.php");
     exit();
 }
@@ -47,23 +44,23 @@ if (!$_SESSION['type'] == "supplier") {
                 <ul class="navbar-nav nav-color">
                     <li>
                         <a class="navbar-brand" href="../index.php"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
-                            Supplier</a>
+                            Supervisor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../supervisor/home.php">Home<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../supervisor/reservation.php">Reservation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../supervisor/cards.php">Cards</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="../supplier/home.php">Home<span class="sr-only"></span></a>
+                        <a class="nav-link" href="../supervisor/calendar.php">Calendar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../supplier/schedule.php">Schedule</a>
+                        <a class="nav-link" href="../supervisor/stocks&stores.php">Stores & Stocks</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../supplier/stocks.php">Stocks</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../supplier/notification.php">Notification</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="../supplier/stocks&stores.php">Stores & Stocks</a>
-                    </li> -->
                 </ul>
 
 
@@ -77,26 +74,5 @@ if (!$_SESSION['type'] == "supplier") {
             </div>
         </nav>
     </div>
-    <div class="padding">
-        <form class="mt-3 text-center">
-            <div class="row form-group">
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-2">
-                    <label>Card Number</label>
-                </div>
-                <div class="col-sm-2">
-                    <input type="text" name="cardnumber" class="form-control" placeholder="Enter Card Number" required>
-                </div>
-                <div class="col-sm-1 text-center">
-                        <button type="submit" name="Submit" class="btn">Check</button>
-                    </div>
-            </div>
-            <div class="row form-group">
-                
-            </div>
-        </form>
-    </div>
 </body>
-
 </html>

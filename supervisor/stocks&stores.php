@@ -11,7 +11,7 @@ session_start();
     <!-- Required meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin - Smart Ration</title>
+    <title>Supervisor - Smart Ration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- refera links -->
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css" />
@@ -28,17 +28,16 @@ session_start();
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
-    <!-- local script -->
     <script src="../assets/js/main.js"></script>
 </head>
 
 <body class="body" onload="filterSelection('stocks')">
     <?php
-if(!$_SESSION['type'] == "Administrator") {
+if (!$_SESSION['type'] == "supervisor") {
     header("location:../index.php");
     exit();
 }
- ?>
+?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -48,24 +47,26 @@ if(!$_SESSION['type'] == "Administrator") {
                 <ul class="navbar-nav nav-color">
                     <li>
                         <a class="navbar-brand" href="../index.php"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
-                            Admin</a>
+                            Supervisor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/home.php">Home<span class="sr-only" (current)></span></a>
+                        <a class="nav-link" href="../supervisor/home.php">Home<span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/workers.php">Workers</a>
+                        <a class="nav-link" href="../supervisor/reservation.php">Reservation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/cards.php">Cards</a>
+                        <a class="nav-link" href="../supervisor/cards.php">Cards</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/calendar.php">Calendar</a>
+                        <a class="nav-link" href="../supervisor/calendar.php">Calendar</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../admin/stocks&stores.php">Stores & Stocks</a>
+                    <li class="nav-item  active">
+                        <a class="nav-link" href="../supervisor/stocks&stores.php">Stores & Stocks</a>
                     </li>
                 </ul>
+
+
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
@@ -76,6 +77,9 @@ if(!$_SESSION['type'] == "Administrator") {
             </div>
         </nav>
     </div>
+
+    <!-- Body content -->
+
     <div id="cards" class="padding">
         <div class="row">
 
@@ -104,13 +108,7 @@ if(!$_SESSION['type'] == "Administrator") {
                 <!-- **************************************************** -->
 
                 <div id="modifycards" class="filterDiv stores">
-                    <div class="row">
-                        <div>
-                            <a href="#" class="btn-menu" style="text-decoration: none;">New Store</a>
-                            <a href="#" class="btn-menu ml-2">Modify Store</a>
-                        </div>
-                    </div>
-                    <p class="text-center mt-2">Store details to be updated..!</p>
+                <p class="text-center mt-2">Store details to be updated..!</p>
                 </div>
 
                 <!-- **************************************************** -->
@@ -121,12 +119,12 @@ if(!$_SESSION['type'] == "Administrator") {
                     <form id="allocate" name="allocate" class="mt-3" action="#">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>District</label>
+                                <label>Store</label>
                             </div>
                             <div class="col-sm-3">
                                 <select id="district" class="form-control" name="postion" placeholder="Position"
                                     required>
-                                    <option disabled selected>Select District</option>
+                                    <option disabled selected>Select Store</option>
                                     <option>Madurai</option>
                                     <option>Erode</option>
                                     <option>Coimbatore</option>
