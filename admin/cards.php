@@ -146,11 +146,24 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label>District</label>
                             </div>
                             <div class="col-sm-3">
-                                <select class="form-control" name="postion" placeholder="Position" required>
+                                <select class="form-control" name="district" placeholder="district" required>
                                     <option disabled selected>Select District</option>
                                     <option>Madurai</option>
                                     <option>Erode</option>
                                     <option>Coimbatore</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-2">
+                                <label>Taluk</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="taluk" placeholder="takuk" required>
+                                    <option disabled selected>Select Taluk</option>
+                                    <option>Coimbatore</option>
+                                    <option>Erode</option>
+                                    <option>Madurai</option>
                                 </select>
                             </div>
                         </div>

@@ -55,9 +55,9 @@ if (!$_SESSION['type'] == "supplier") {
                     <li class="nav-item">
                         <a class="nav-link" href="../supplier/schedule.php">Schedule</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="../supplier/cards.php">Cards</a>
-                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="../supplier/stocks.php">Stocks</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../supplier/calendar.php">Notification</a>
                     </li>
