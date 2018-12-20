@@ -103,66 +103,59 @@ if (!$_SESSION['type'] == "supervisor") {
 
             <div id="addnewcards" class="col-sm-9">
                 <div class="filterDiv new">
-                    <form class="mt-3">
+                    <form name="newcard" class="mt-3" action="../cards/cardsupervisor.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Name</label>
+                                <label for="firstname, lastname">Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="firstname" class="form-control" placeholder="First Name"
-                                    required>
+                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name">
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="lastname" class="form-control" placeholder="Last Name"
-                                    required>
+                                <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Last Name">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Mobile Number</label>
+                                <label for="number">Mobile Number</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="number" class="form-control" placeholder="Mobile Number"
-                                    required>
+                                <input id="number" type="text" name="number" class="form-control" placeholder="Mobile Number">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Address</label>
+                                <label for="doorno, street, town">Address</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="adddress-doorno" class="form-control" placeholder="Door number"
-                                    required>
+                                <input id="doorno" type="text" name="adddress-doorno" class="form-control" placeholder="Door number">
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="adddress-street" class="form-control" placeholder="Street name"
-                                    required>
+                                <input id="street" type="text" name="adddress-street" class="form-control" placeholder="Street name">
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="adddress-town" class="form-control" placeholder="Town name"
-                                    required>
+                                <input id="town" type="text" name="adddress-town" class="form-control" placeholder="Town name">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Store</label>
+                                <label for="taluk">Store</label>
                             </div>
                             <div class="col-sm-3">
-                                <select class="form-control" name="taluk" placeholder="takuk" required>
+                                <select id="taluk" class="form-control" name="taluk">
                                     <option disabled selected>Select Store</option>
-                                    <option>Coimbatore</option>
-                                    <option>Erode</option>
-                                    <option>Madurai</option>
+                                    <option value="coimbatore">Coimbatore</option>
+                                    <option value="erode">Erode</option>
+                                    <option value="madurai">Madurai</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Members Count</label>
+                                <label for="membercount">Members Count</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="members" class="form-control" placeholder="Number  of members"
-                                    required>
+                                <input id="membercount" type="text" name="members" class="form-control">
                             </div>
 
                         </div>

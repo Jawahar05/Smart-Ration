@@ -11,6 +11,9 @@ $conn = mysqli_connect($Host_Name, $Host_User, $Host_Passowrd, $Database_Name);
 
 //check conntection
 if(!$conn) {
-    echo "Database Connection error..!";
+    $_SESSION['errorcode'] = mysqli_connect_errno();
+    $_SESSION['error'] =  ("Connection Failed: " .mysqli_connect_error());
+    header("Location:../error/error.php");
+    exit();
 }
 ?>

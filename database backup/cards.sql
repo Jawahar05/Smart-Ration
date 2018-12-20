@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2018 at 08:04 AM
+-- Generation Time: Dec 15, 2018 at 08:56 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -35,7 +35,7 @@ CREATE TABLE `cards` (
   `mobile` int(10) NOT NULL,
   `address` varchar(20) NOT NULL,
   `district` varchar(20) NOT NULL,
-  `taluk` varchar(25) NOT NULL,
+  `store` varchar(25) NOT NULL,
   `members` int(2) NOT NULL,
   `card_type` tinyint(1) NOT NULL,
   `rice` tinyint(1) NOT NULL DEFAULT '0',

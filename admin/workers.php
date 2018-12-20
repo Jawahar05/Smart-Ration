@@ -100,93 +100,90 @@ if(!$_SESSION['type'] == "Administrator") {
 
             <div id="addnewworker" class="col-sm-9">
                 <div class="filterDiv new">
-                    <form id="newworker" name="newworker" class="mt-3" action="#" onsubmit="return validateForm()">
+                    <form id="newworker" name="newform" class="mt-3" action="../workers/workeradmin.php" method="POST" onsubmit="return validateForm()">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Name</label>
+                                <label for="firstname">Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name"
-                                    onmouseout="return validateName();" required>
+                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name" required>
                                 <span id="firstnamemsg"></span>
                             </div>
                             <div class="col-sm-3">
-                                <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Last Name"
-                                    required>
+                                <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Last Name">
                                 <span id="lastnamemsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Password</label>
+                                <label for="password">Password</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="password" type="password" name="password" class="form-control" placeholder="Password"
-                                    required>
+                                <input id="password" type="password" name="password" class="form-control" placeholder="Password" required>
                                 <span id="passwordmsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Mobile Number</label>
+                                <label for="mobilenumber">Mobile Number</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="mobilenumber" type="text" name="number" class="form-control" placeholder="Mobile Number"
-                                    required>
+                                <input id="mobilenumber" type="text" name="mobilenumber" class="form-control" placeholder="Mobile Number" required>
                                 <span id="mobilenumbermsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Email</label>
+                                <label for="email">Email</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="email" type="email" name="email" class="form-control" placeholder="Email Id"
-                                    required>
+                                <input id="email" type="email" name="email" class="form-control" placeholder="Email Id" required>
                                 <span id="emailmsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Position</label>
+                                <label for="position">Position</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="position" class="form-control" name="postion" placeholder="Position"
-                                    required>
+                                <select id="position" class="form-control" name="postion">
                                     <option disabled selected>Select Position</option>
-                                    <option>Supervisor</option>
-                                    <option>Supplier</option>
-                                    <option>Administrator</option>
+                                    <option value="supervisor">Supervisor</option>
+                                    <option value="supplier">Supplier</option>
+                                    <option value="administrator">Administrator</option>
                                 </select>
                                 <span id="positionmsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>District</label>
+                                <label for="district">District</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="district" class="form-control" name="postion" placeholder="Position"
-                                    required>
+                                <select id="district" class="form-control" name="district">
                                     <option disabled selected>Select District</option>
-                                    <option>Madurai</option>
-                                    <option>Erode</option>
-                                    <option>Coimbatore</option>
+                                    <option value="madurai">Madurai</option>
+                                    <option value="erode">Erode</option>
+                                    <option value="coimbatore">Coimbatore</option>
                                 </select>
                                 <span id="districtmsg"></span>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Store Name</label>
+                                <label for="store">Store Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="storename" type="text" name="storename" class="form-control" placeholder="Store Name"
-                                    required>
+                                <select id="store" class="form-control" name="store">
+                                    <option disabled selected>Select Store</option>
+                                    <option value="perundurai">Perundurai</option>
+                                    <option value="erode">Erode</option>
+                                    <option value="anthiyur">Anthiyur</option>
+                                </select>
                                 <span id="storenamemsg"></span>
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="submit" value="submit" class="btn">Submit</button>
+                                <button type="submit" name="newsubmit" value="newsubmit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -198,21 +195,20 @@ if(!$_SESSION['type'] == "Administrator") {
                 <!-- **************************************************** -->
 
                 <div id="modifyworker" class="filterDiv modify">
-                    <form class="mt-3">
+                    <form class="mt-3" name="modifyform" action="../workers/workeradmin.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Employee ID</label>
+                                <label for="modify-empid">Employee ID</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="nameid" class="form-control" placeholder="Employee Id to modify"
-                                    required>
+                                <input id="modify-empid" type="text" name="nameid" class="form-control" placeholder="Employee Id to modify">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button type="submit" name="modifysubmit" value="modifysubmit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -223,21 +219,20 @@ if(!$_SESSION['type'] == "Administrator") {
                 <!-- **************************************************** -->
 
                 <div id="removeworker" class="filterDiv remove">
-                    <form class="mt-3">
+                    <form class="mt-3" name="removeform" action="../workers/workeradmin.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Employee ID</label>
+                                <label for="remove-empid">Employee ID</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="nameid" class="form-control" placeholder="Employee Id to remove"
-                                    required>
+                                <input id="remove-empid" type="text" name="nameid" class="form-control" placeholder="Employee Id to remove">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button type="submit" name="removeSubmit" value="removesubmit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>

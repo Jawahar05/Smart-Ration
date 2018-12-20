@@ -78,9 +78,11 @@
             </div>
         </nav>
     </div>
+
     <!-- **************************************************** -->
     <!-- ****************Nav item Workers *********************-->
     <!-- **************************************************** -->
+    
     <div id="cards" class="padding">
         <div class="row">
 
@@ -101,85 +103,78 @@
 
             <div id="addnewcards" class="col-sm-9">
                 <div class="filterDiv new">
-                    <form class="mt-3">
+                    <form name="newcard" class="mt-3" action="../cards/cardadmin.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Name</label>
+                                <label for="firstname, lastname">Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="firstname" class="form-control" placeholder="First Name"
-                                    required>
+                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name">
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="lastname" class="form-control" placeholder="Last Name"
-                                    required>
+                                <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Last Name">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Mobile Number</label>
+                                <label id="mobile">Mobile Number</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="number" class="form-control" placeholder="Mobile Number"
-                                    required>
+                                <input id="mobile" type="text" name="mobile" class="form-control" placeholder="Mobile Number">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Address</label>
+                                <label for="doorno, street, town">Address</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="adddress-doorno" class="form-control" placeholder="Door number"
-                                    required>
+                                <input id="doorno" type="text" name="doorno" class="form-control" placeholder="Door number">
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="adddress-street" class="form-control" placeholder="Street name"
-                                    required>
+                                <input id="street" type="text" name="street" class="form-control" placeholder="Street name">
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="adddress-town" class="form-control" placeholder="Town name"
-                                    required>
+                                <input id="town" type="text" name="town" class="form-control" placeholder="Town name">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>District</label>
+                                <label for="district">District</label>
                             </div>
                             <div class="col-sm-3">
-                                <select class="form-control" name="district" placeholder="district" required>
+                                <select id="district" name="district" class="form-control">
                                     <option disabled selected>Select District</option>
-                                    <option>Madurai</option>
-                                    <option>Erode</option>
-                                    <option>Coimbatore</option>
+                                    <option value="madurai">Madurai</option>
+                                    <option value="erode">Erode</option>
+                                    <option value="coimbatore">Coimbatore</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Store</label>
+                                <label for="store">Store</label>
                             </div>
                             <div class="col-sm-3">
-                                <select class="form-control" name="taluk" placeholder="takuk" required>
+                                <select id="store" name="store" class="form-control">
                                     <option disabled selected>Select Store</option>
-                                    <option>Coimbatore</option>
-                                    <option>Erode</option>
-                                    <option>Madurai</option>
+                                    <option value="perundurai">Perundurai</option>
+                                    <option value="erode">Erode</option>
+                                    <option value="anthiyur">Anthiyur</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Members Count</label>
+                                <label for="members">Members Count</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="members" class="form-control" placeholder="Number  of members"
-                                    required>
+                                <input id="members" type="text" name="members" class="form-control" placeholder="Number  of members">
                             </div>
 
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Card type</label>
+                                <label for="cardtype">Card type</label>
                             </div>
                             <div class="col-sm-3 form-check pl-5">
                                 <input class="form-check-input" type="radio" name="cardtype" id="commodity" value="commodity"
@@ -199,7 +194,7 @@
                             <div class="col-sm-3 text-center">
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button id="newsubmit" type="submit" name="newSubmit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -211,21 +206,20 @@
                 <!-- **************************************************** -->
 
                 <div id="modifycards" class="filterDiv modify">
-                    <form class="mt-3">
+                    <form name="modifycard" class="mt-3" action="../cards/cardadmin.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Card Number</label>
+                                <label for="cardnumber">Card Number</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="cardnumber" class="form-control" placeholder="Card number to modify"
-                                    required>
+                                <input id="cardnumber" type="text" name="cardnumber" class="form-control" placeholder="Card number to modify">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button id="modifysubmit" type="submit" name="modifySubmit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -236,21 +230,20 @@
                 <!-- **************************************************** -->
 
                 <div id="removeworker" class="filterDiv remove">
-                    <form class="mt-3">
+                    <form name="removecard" class="mt-3" action="../cards/cardadmin.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Card Number</label>
+                                <label for="cardnumber">Card Number</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="nameid" class="form-control" placeholder="Card Number to remove"
-                                    required>
+                                <input id="cardnumber" type="text" name="nameid" class="form-control" placeholder="Card Number to remove">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button id="removesubmit" type="submit" name="removesubmit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>

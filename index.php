@@ -36,7 +36,7 @@ session_start();
             <!-- Heading column-->
             <div class="col-sm">
                 <div class="text-center heading">
-                    <img class="img-fluid" src="./assets/images/logo.png" style="width: 80px;">
+                    <img class="img-fluid" src="./assets/images/logo.png" style="width: 90px;">
                     <p>Reservation Based <br>Smart Ration System</p>
                 </div>
             </div>
@@ -64,7 +64,7 @@ session_start();
                             <label for="password"><i class="fas fa-unlock-alt fa-lg"></i> Password</label>
                             <input name="password" type="password" class="form-control" id="password" placeholder="Enter Password" required>
                         </div>
-                        <button name="submit" type="submit" class="btn">Submit</button>
+                        <button name="submit" type="submit" class="btn">Login</button>
                         <p class="text-center"><a href="./development.php">Forget Password.?</a></p>
                     </form>
                 </div>
