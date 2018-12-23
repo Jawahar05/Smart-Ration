@@ -42,6 +42,11 @@ for (var i = 0; i <= btns.length; i++) {
     });
 }
 
+//get value
+function getvalue(district) {
+    var search = district;
+}
+
 //validate new workers form
 // function validateForm() {
 //     var x = document.getElementById("newworker");

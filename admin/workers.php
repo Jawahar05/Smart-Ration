@@ -70,9 +70,20 @@ if(!$_SESSION['type'] == "Administrator") {
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                    <!-- <a class="mr-3"><i class="fas fa-bell" style="size:20px;"></i></a> -->
-                    <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i>
-                        Logout</button>
+                <div class="dropdown show mr-5">
+                        <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="color:black;">
+                            <i class="fas fa-user" style="font-size: 25px;"></i>
+                            <?php
+                                    echo(ucwords($_SESSION['user']));
+                                    ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
+                            <a class="dropdown-item" href="../Profile/profile.php">Profile</a>
+                            <button type="submit" name="submit" class="dropdown-item" href="#">Logout</button>
+
+                        </div>
+                    </div>
                 </form>
             </div>
         </nav>
@@ -160,12 +171,19 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label for="district">District</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="district" class="form-control" name="district">
-                                    <option disabled selected>Select District</option>
-                                    <option value="madurai">Madurai</option>
-                                    <option value="erode">Erode</option>
-                                    <option value="coimbatore">Coimbatore</option>
-                                </select>
+                            <?php
+                                include("../log/dbconnect.php");
+
+                                $result = $conn->query("SELECT district_name From district_data WHERE district_code > 0");
+                                echo ("<select id='district' class='form-control' name='district' onchange='getvalue(this.value)'>");
+                                echo ('<option disabled selected>Select District</option>');
+                                while ($row = $result->fetch_assoc()) {
+                                    unset($district_name);
+                                    $district_name = $row['district_name'];
+                                    echo ('<option value=" ' . $district_name . '"  >' . $district_name . '</option>');
+                                }
+                                echo "</select>";
+                                ?>
                                 <span id="districtmsg"></span>
                             </div>
                         </div>
@@ -174,12 +192,19 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label for="store">Store Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="store" class="form-control" name="store">
-                                    <option disabled selected>Select Store</option>
-                                    <option value="perundurai">Perundurai</option>
-                                    <option value="erode">Erode</option>
-                                    <option value="anthiyur">Anthiyur</option>
-                                </select>
+                                <?php
+                                include("../log/dbconnect.php");
+
+                                $result = $conn->query("SELECT store_name From store_data WHERE district = 'erode'");
+                                echo ("<select id='store' class='form-control' name='store'>");
+                                echo ('<option disabled selected>Select Store</option>');
+                                while ($row = $result->fetch_assoc()) {
+                                    unset($store_name);
+                                    $store_name = $row['store_name'];
+                                    echo ('<option value=" ' . $store_name . '"  >' . $store_name . '</option>');
+                                }
+                                echo "</select>";
+                                ?>
                                 <span id="storenamemsg"></span>
                             </div>
                             <div class="col-sm-3 text-center">

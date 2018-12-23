@@ -5,8 +5,8 @@
 
     <!-- PHP Session -->
     <?php
-session_start();
-?>
+    session_start();
+    ?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
@@ -35,11 +35,11 @@ session_start();
 
 <body class="body" onload="filterSelection('new')">
     <?php
-if (!$_SESSION['type'] == "supervisor") {
-    header("location:../index.php");
-    exit();
-}
-?>
+    if (!$_SESSION['type'] == "supervisor") {
+        header("location:../index.php");
+        exit();
+    }
+    ?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -72,9 +72,20 @@ if (!$_SESSION['type'] == "supervisor") {
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                    <!-- <a class="mr-3"><i class="fas fa-bell" style="size:20px;"></i></a> -->
-                    <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i>
-                        Logout</button>
+                <div class="dropdown show mr-5">
+                        <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="color:black;">
+                            <i class="fas fa-user" style="font-size: 25px;"></i>
+                            <?php
+                                    echo(ucwords($_SESSION['user']));
+                                    ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
+                            <a class="dropdown-item" href="../Profile/profile.php">Profile</a>
+                            <button type="submit" name="submit" class="dropdown-item" href="#">Logout</button>
+
+                        </div>
+                    </div>
                 </form>
             </div>
         </nav>
@@ -128,13 +139,13 @@ if (!$_SESSION['type'] == "supervisor") {
                                 <label for="doorno, street, town">Address</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="doorno" type="text" name="adddress-doorno" class="form-control" placeholder="Door number">
+                                <input id="doorno" type="text" name="doorno" class="form-control" placeholder="Door number">
                             </div>
                             <div class="col-sm-3">
-                                <input id="street" type="text" name="adddress-street" class="form-control" placeholder="Street name">
+                                <input id="street" type="text" name="street" class="form-control" placeholder="Street name">
                             </div>
                             <div class="col-sm-3">
-                                <input id="town" type="text" name="adddress-town" class="form-control" placeholder="Town name">
+                                <input id="town" type="text" name="town" class="form-control" placeholder="Town name">
                             </div>
                         </div>
                         <div class="row form-group">
@@ -142,12 +153,19 @@ if (!$_SESSION['type'] == "supervisor") {
                                 <label for="taluk">Store</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="taluk" class="form-control" name="taluk">
-                                    <option disabled selected>Select Store</option>
-                                    <option value="coimbatore">Coimbatore</option>
-                                    <option value="erode">Erode</option>
-                                    <option value="madurai">Madurai</option>
-                                </select>
+                            <?php
+                                include("../log/dbconnect.php");
+
+                                $result = $conn->query("SELECT store_name From store_data WHERE district = 'coimbatore'");
+                                echo ("<select id='taluk' class='form-control' name='taluk'>");
+                                echo ('<option disabled selected>Select Store</option>');
+                                while ($row = $result->fetch_assoc()) {
+                                    unset($store_name);
+                                    $store_name = $row['store_name'];
+                                    echo ('<option value=" ' . $store_name . '"  >' . $store_name . '</option>');
+                                }
+                                echo "</select>";
+                                ?>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -161,7 +179,7 @@ if (!$_SESSION['type'] == "supervisor") {
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-2">
-                                <label>Card type</label>
+                                <label for="commodity, sugar">Card type</label>
                             </div>
                             <div class="col-sm-3 form-check pl-5">
                                 <input class="form-check-input" type="radio" name="cardtype" id="commodity" value="commodity"
@@ -181,7 +199,7 @@ if (!$_SESSION['type'] == "supervisor") {
                             <div class="col-sm-3 text-center">
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button id="newsubmit" type="newsubmit" name="newsubmit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -207,7 +225,7 @@ if (!$_SESSION['type'] == "supervisor") {
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button id="modifysubmit" type="submit" name="modifySubmit" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>

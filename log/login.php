@@ -23,6 +23,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['user'] = $row['worker_name'];
                 $_SESSION['type'] = $row['position'];
                 $_SESSION['status'] = "active";
+                $_SESSION['district'] = $row['district'];
                 //authorizing
                 if ($_SESSION['type'] == "administrator") {
                     header("location:../admin/home.php");

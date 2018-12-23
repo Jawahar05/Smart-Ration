@@ -6,6 +6,7 @@
     <!-- PHP Session -->
     <?php
 session_start();
+$district = $_SESSION['district'];
 ?>
 
     <!-- Required meta -->
@@ -70,9 +71,20 @@ if (!$_SESSION['type'] == "supervisor") {
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                    <!-- <a class="mr-3"><i class="fas fa-bell" style="size:20px;"></i></a> -->
-                    <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i>
-                        Logout</button>
+                <div class="dropdown show mr-5">
+                        <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="color:black;">
+                            <i class="fas fa-user" style="font-size: 25px;"></i>
+                            <?php
+                                  echo(ucwords($_SESSION['user']));
+                                    ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
+                            <a class="dropdown-item" href="../Profile/profile.php">Profile</a>
+                            <button type="submit" name="submit" class="dropdown-item" href="#">Logout</button>
+
+                        </div>
+                    </div>
                 </form>
             </div>
         </nav>
@@ -99,7 +111,89 @@ if (!$_SESSION['type'] == "supervisor") {
             <!-- **************************************************** -->
             <div id="addnewcards" class="col-sm-9">
                 <div class="filterDiv stocks">
-                    <p class="text-center mt-2">Stock details to be updated..!</p>
+                <?php 
+                            //include database
+                    include "../log/dbconnect.php";
+                            //query
+                    $statement = "SELECT district_code, district_name, required_rice, available_rice, alloted_rice, remaining_rice,
+                     required_sugar, available_sugar, alloted_sugar, remaining_sugar,
+                      required_wheat, available_wheat, alloted_wheat, remaining_wheat,
+                      required_dhall, available_dhall, alloted_dhall, remaining_dhall FROM district_data WHERE district_name  = '$district'";
+                            //table creation header
+                    echo "<table border='3' class='text-center'>
+                                <tr>
+                                <th rowspan='2'>District Code</th>
+                                <th rowspan='2'>District Name</th>
+                                <th colspan='4'>Rice (Kg)</th>
+                                <th colspan='4'>Sugar (Kg)</th>
+                                <th colspan='4'>Dhall (Kg)</th>
+                                <th colspan='4'>Wheat (Kg)</th>
+                                </tr>
+                                
+                                
+                                <tr>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                </tr>
+                                ";
+                            //execute
+                    $result = $conn->query($statement);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
+                            echo "<tr>";
+                            echo "<td>" . $row['district_code'] . "</td>";
+                            echo "<td>" . $row['district_name'] . "</td>";
+
+                            echo "<td>" . $row['required_rice'] . "</td>";
+                            echo "<td>" . $row['available_rice'] . "</td>";
+                            echo "<td>" . $row['alloted_rice'] . "</td>";
+                            echo "<td>" . $row['remaining_rice'] . "</td>";
+
+                            echo "<td>" . $row['required_sugar'] . "</td>";
+                            echo "<td>" . $row['available_sugar'] . "</td>";
+                            echo "<td>" . $row['alloted_sugar'] . "</td>";
+                            echo "<td>" . $row['remaining_sugar'] . "</td>";
+
+
+                            echo "<td>" . $row['required_dhall'] . "</td>";
+                            echo "<td>" . $row['available_dhall'] . "</td>";
+                            echo "<td>" . $row['alloted_dhall'] . "</td>";
+                            echo "<td>" . $row['remaining_dhall'] . "</td>";
+
+                            echo "<td>" . $row['required_wheat'] . "</td>";
+                            echo "<td>" . $row['available_wheat'] . "</td>";
+                            echo "<td>" . $row['alloted_wheat'] . "</td>";
+                            echo "<td>" . $row['remaining_wheat'] . "</td>";
+
+
+                            echo "</tr>";
+                        }
+                    }
+                    echo "</table>";
+                    ?>
+                    <h6 style="font-weight: bold;"><br>Description :</h6>
+                    <p class="pl-5">
+                        Req     -   Required per month<br>
+                        Aval    -   Available in the store<br>
+                        Alot    -   Alotted for this month<br>
+                        Rem     -   Remaining to be alloted
+                    </p>
                 </div>
 
 
@@ -108,7 +202,89 @@ if (!$_SESSION['type'] == "supervisor") {
                 <!-- **************************************************** -->
 
                 <div id="modifycards" class="filterDiv stores">
-                <p class="text-center mt-2">Store details to be updated..!</p>
+                <?php 
+                            //include database
+                    include "../log/dbconnect.php";
+                            //query
+                    $statement = "SELECT store_id, store_name, required_rice, available_rice, alloted_rice, remaining_rice,
+                     required_sugar, available_sugar, alloted_sugar, remaining_sugar,
+                      required_wheat, available_wheat, alloted_wheat, remaining_wheat,
+                      required_dhall, available_dhall, alloted_dhall, remaining_dhall FROM store_data WHERE district = '$district'";
+                            //table creation header
+                    echo "<table border='3' class='text-center'>
+                                <tr>
+                                <th rowspan='2'>Store Code</th>
+                                <th rowspan='2'>Store Name</th>
+                                <th colspan='4'>Rice (Kg)</th>
+                                <th colspan='4'>Sugar (Kg)</th>
+                                <th colspan='4'>Dhall (Kg)</th>
+                                <th colspan='4'>Wheat (Kg)</th>
+                                </tr>
+                                
+                                
+                                <tr>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                </tr>
+                                ";
+                            //execute
+                    $result = $conn->query($statement);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
+                            echo "<tr>";
+                            echo "<td>" . $row['store_id'] . "</td>";
+                            echo "<td>" . $row['store_name'] . "</td>";
+
+                            echo "<td>" . $row['required_rice'] . "</td>";
+                            echo "<td>" . $row['available_rice'] . "</td>";
+                            echo "<td>" . $row['alloted_rice'] . "</td>";
+                            echo "<td>" . $row['remaining_rice'] . "</td>";
+
+                            echo "<td>" . $row['required_sugar'] . "</td>";
+                            echo "<td>" . $row['available_sugar'] . "</td>";
+                            echo "<td>" . $row['alloted_sugar'] . "</td>";
+                            echo "<td>" . $row['remaining_sugar'] . "</td>";
+
+
+                            echo "<td>" . $row['required_dhall'] . "</td>";
+                            echo "<td>" . $row['available_dhall'] . "</td>";
+                            echo "<td>" . $row['alloted_dhall'] . "</td>";
+                            echo "<td>" . $row['remaining_dhall'] . "</td>";
+
+                            echo "<td>" . $row['required_wheat'] . "</td>";
+                            echo "<td>" . $row['available_wheat'] . "</td>";
+                            echo "<td>" . $row['alloted_wheat'] . "</td>";
+                            echo "<td>" . $row['remaining_wheat'] . "</td>";
+
+
+                            echo "</tr>";
+                        }
+                    }
+                    echo "</table>";
+                    ?>
+                    <h6 style="font-weight: bold;"><br>Description :</h6>
+                    <p class="pl-5">
+                        Req     -   Required per month<br>
+                        Aval    -   Available in the store<br>
+                        Alot    -   Alotted for this month<br>
+                        Rem     -   Remaining to be alloted
+                    </p>
                 </div>
 
                 <!-- **************************************************** -->
@@ -122,13 +298,19 @@ if (!$_SESSION['type'] == "supervisor") {
                                 <label>Store</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="district" class="form-control" name="postion" placeholder="Position"
-                                    required>
-                                    <option disabled selected>Select Store</option>
-                                    <option>Madurai</option>
-                                    <option>Erode</option>
-                                    <option>Coimbatore</option>
-                                </select>
+                            <?php
+                                include("../log/dbconnect.php");
+
+                                $result = $conn->query("SELECT store_name From store_data WHERE district = 'coimbatore'");
+                                echo ("<select id='taluk' class='form-control' name='taluk'>");
+                                echo ('<option disabled selected>Select Store</option>');
+                                while ($row = $result->fetch_assoc()) {
+                                    unset($store_name);
+                                    $store_name = $row['store_name'];
+                                    echo ('<option value=" ' . $store_name . '"  >' . $store_name . '</option>');
+                                }
+                                echo "</select>";
+                                ?>
                                 <span id="districtmsg"></span>
                             </div>
                             <div class="col-sm-3 text-center">

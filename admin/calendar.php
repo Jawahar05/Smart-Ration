@@ -71,9 +71,20 @@ if(!$_SESSION['type'] == "Administrator") {
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                    <!-- <a class="mr-3"><i class="fas fa-bell" style="size:20px;"></i></a> -->
-                    <button name="submit" type="submit" class="btn"><i class="fas fa-sign-out-alt" style="color:black;"></i>
-                        Logout</button>
+                <div class="dropdown show mr-5">
+                        <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="color:black;">
+                            <i class="fas fa-user" style="font-size: 25px;"></i>
+                            <?php
+                                    echo(ucwords($_SESSION['user']));
+                                    ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
+                            <a class="dropdown-item" href="../Profile/profile.php">Profile</a>
+                            <button type="submit" name="submit" class="dropdown-item" href="#">Logout</button>
+
+                        </div>
+                    </div>
                 </form>
             </div>
         </nav>
