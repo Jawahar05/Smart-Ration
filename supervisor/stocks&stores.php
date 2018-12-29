@@ -5,9 +5,8 @@
 
     <!-- PHP Session -->
     <?php
-session_start();
-$district = $_SESSION['district'];
-?>
+    session_start();
+    ?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
@@ -34,11 +33,11 @@ $district = $_SESSION['district'];
 
 <body class="body" onload="filterSelection('stocks')">
     <?php
-if (!$_SESSION['type'] == "supervisor") {
-    header("location:../index.php");
-    exit();
-}
-?>
+    if (!$_SESSION['type'] == "supervisor") {
+        header("location:../index.php");
+        exit();
+    }
+    ?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -76,13 +75,16 @@ if (!$_SESSION['type'] == "supervisor") {
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
                             <?php
-                                  echo(ucwords($_SESSION['user']));
-                                    ?>
+                            echo (ucwords($_SESSION['user']));
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                            <a class="dropdown-item" href="../Profile/profile.php">Profile</a>
-                            <button type="submit" name="submit" class="dropdown-item" href="#">Logout</button>
-
+                        <a class="dropdown-item" href="../Profile/profile.php">
+                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                            Profile</a>
+                            <button type="submit" name="submit" class="dropdown-item" href="#">
+                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                            Logout</button>
                         </div>
                     </div>
                 </form>
@@ -113,14 +115,11 @@ if (!$_SESSION['type'] == "supervisor") {
                 <div class="filterDiv stocks">
                 <?php 
                             //include database
-                    include "../log/dbconnect.php";
+                include "../log/dbconnect.php";
                             //query
-                    $statement = "SELECT district_code, district_name, required_rice, available_rice, alloted_rice, remaining_rice,
-                     required_sugar, available_sugar, alloted_sugar, remaining_sugar,
-                      required_wheat, available_wheat, alloted_wheat, remaining_wheat,
-                      required_dhall, available_dhall, alloted_dhall, remaining_dhall FROM district_data WHERE district_name  = '$district'";
+                $statement = "SELECT * FROM district_data WHERE district_name  = '".$_SESSION['district']."'";
                             //table creation header
-                    echo "<table border='3' class='text-center'>
+                echo "<table border='3' class='text-center'>
                                 <tr>
                                 <th rowspan='2'>District Code</th>
                                 <th rowspan='2'>District Name</th>
@@ -151,42 +150,42 @@ if (!$_SESSION['type'] == "supervisor") {
                                 </tr>
                                 ";
                             //execute
-                    $result = $conn->query($statement);
+                $result = $conn->query($statement);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
                             // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
-                            echo "<tr>";
-                            echo "<td>" . $row['district_code'] . "</td>";
-                            echo "<td>" . $row['district_name'] . "</td>";
+                        echo "<tr>";
+                        echo "<td>" . $row['district_code'] . "</td>";
+                        echo "<td>" . $row['district_name'] . "</td>";
 
-                            echo "<td>" . $row['required_rice'] . "</td>";
-                            echo "<td>" . $row['available_rice'] . "</td>";
-                            echo "<td>" . $row['alloted_rice'] . "</td>";
-                            echo "<td>" . $row['remaining_rice'] . "</td>";
+                        echo "<td>" . $row['required_rice'] . "</td>";
+                        echo "<td>" . $row['available_rice'] . "</td>";
+                        echo "<td>" . $row['alloted_rice'] . "</td>";
+                        echo "<td>" . $row['remaining_rice'] . "</td>";
 
-                            echo "<td>" . $row['required_sugar'] . "</td>";
-                            echo "<td>" . $row['available_sugar'] . "</td>";
-                            echo "<td>" . $row['alloted_sugar'] . "</td>";
-                            echo "<td>" . $row['remaining_sugar'] . "</td>";
-
-
-                            echo "<td>" . $row['required_dhall'] . "</td>";
-                            echo "<td>" . $row['available_dhall'] . "</td>";
-                            echo "<td>" . $row['alloted_dhall'] . "</td>";
-                            echo "<td>" . $row['remaining_dhall'] . "</td>";
-
-                            echo "<td>" . $row['required_wheat'] . "</td>";
-                            echo "<td>" . $row['available_wheat'] . "</td>";
-                            echo "<td>" . $row['alloted_wheat'] . "</td>";
-                            echo "<td>" . $row['remaining_wheat'] . "</td>";
+                        echo "<td>" . $row['required_sugar'] . "</td>";
+                        echo "<td>" . $row['available_sugar'] . "</td>";
+                        echo "<td>" . $row['alloted_sugar'] . "</td>";
+                        echo "<td>" . $row['remaining_sugar'] . "</td>";
 
 
-                            echo "</tr>";
-                        }
+                        echo "<td>" . $row['required_dhall'] . "</td>";
+                        echo "<td>" . $row['available_dhall'] . "</td>";
+                        echo "<td>" . $row['alloted_dhall'] . "</td>";
+                        echo "<td>" . $row['remaining_dhall'] . "</td>";
+
+                        echo "<td>" . $row['required_wheat'] . "</td>";
+                        echo "<td>" . $row['available_wheat'] . "</td>";
+                        echo "<td>" . $row['alloted_wheat'] . "</td>";
+                        echo "<td>" . $row['remaining_wheat'] . "</td>";
+
+
+                        echo "</tr>";
                     }
-                    echo "</table>";
-                    ?>
+                }
+                echo "</table>";
+                ?>
                     <h6 style="font-weight: bold;"><br>Description :</h6>
                     <p class="pl-5">
                         Req     -   Required per month<br>
@@ -204,14 +203,11 @@ if (!$_SESSION['type'] == "supervisor") {
                 <div id="modifycards" class="filterDiv stores">
                 <?php 
                             //include database
-                    include "../log/dbconnect.php";
+                include "../log/dbconnect.php";
                             //query
-                    $statement = "SELECT store_id, store_name, required_rice, available_rice, alloted_rice, remaining_rice,
-                     required_sugar, available_sugar, alloted_sugar, remaining_sugar,
-                      required_wheat, available_wheat, alloted_wheat, remaining_wheat,
-                      required_dhall, available_dhall, alloted_dhall, remaining_dhall FROM store_data WHERE district = '$district'";
+                $statement = "SELECT *FROM store_data WHERE district = '".$_SESSION['district']."'";
                             //table creation header
-                    echo "<table border='3' class='text-center'>
+                echo "<table border='3' class='text-center'>
                                 <tr>
                                 <th rowspan='2'>Store Code</th>
                                 <th rowspan='2'>Store Name</th>
@@ -242,42 +238,42 @@ if (!$_SESSION['type'] == "supervisor") {
                                 </tr>
                                 ";
                             //execute
-                    $result = $conn->query($statement);
+                $result = $conn->query($statement);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
                             // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
-                            echo "<tr>";
-                            echo "<td>" . $row['store_id'] . "</td>";
-                            echo "<td>" . $row['store_name'] . "</td>";
+                        echo "<tr>";
+                        echo "<td>" . $row['store_id'] . "</td>";
+                        echo "<td>" . $row['store_name'] . "</td>";
 
-                            echo "<td>" . $row['required_rice'] . "</td>";
-                            echo "<td>" . $row['available_rice'] . "</td>";
-                            echo "<td>" . $row['alloted_rice'] . "</td>";
-                            echo "<td>" . $row['remaining_rice'] . "</td>";
+                        echo "<td>" . $row['required_rice'] . "</td>";
+                        echo "<td>" . $row['available_rice'] . "</td>";
+                        echo "<td>" . $row['alloted_rice'] . "</td>";
+                        echo "<td>" . $row['remaining_rice'] . "</td>";
 
-                            echo "<td>" . $row['required_sugar'] . "</td>";
-                            echo "<td>" . $row['available_sugar'] . "</td>";
-                            echo "<td>" . $row['alloted_sugar'] . "</td>";
-                            echo "<td>" . $row['remaining_sugar'] . "</td>";
-
-
-                            echo "<td>" . $row['required_dhall'] . "</td>";
-                            echo "<td>" . $row['available_dhall'] . "</td>";
-                            echo "<td>" . $row['alloted_dhall'] . "</td>";
-                            echo "<td>" . $row['remaining_dhall'] . "</td>";
-
-                            echo "<td>" . $row['required_wheat'] . "</td>";
-                            echo "<td>" . $row['available_wheat'] . "</td>";
-                            echo "<td>" . $row['alloted_wheat'] . "</td>";
-                            echo "<td>" . $row['remaining_wheat'] . "</td>";
+                        echo "<td>" . $row['required_sugar'] . "</td>";
+                        echo "<td>" . $row['available_sugar'] . "</td>";
+                        echo "<td>" . $row['alloted_sugar'] . "</td>";
+                        echo "<td>" . $row['remaining_sugar'] . "</td>";
 
 
-                            echo "</tr>";
-                        }
+                        echo "<td>" . $row['required_dhall'] . "</td>";
+                        echo "<td>" . $row['available_dhall'] . "</td>";
+                        echo "<td>" . $row['alloted_dhall'] . "</td>";
+                        echo "<td>" . $row['remaining_dhall'] . "</td>";
+
+                        echo "<td>" . $row['required_wheat'] . "</td>";
+                        echo "<td>" . $row['available_wheat'] . "</td>";
+                        echo "<td>" . $row['alloted_wheat'] . "</td>";
+                        echo "<td>" . $row['remaining_wheat'] . "</td>";
+
+
+                        echo "</tr>";
                     }
-                    echo "</table>";
-                    ?>
+                }
+                echo "</table>";
+                ?>
                     <h6 style="font-weight: bold;"><br>Description :</h6>
                     <p class="pl-5">
                         Req     -   Required per month<br>
@@ -299,18 +295,18 @@ if (!$_SESSION['type'] == "supervisor") {
                             </div>
                             <div class="col-sm-3">
                             <?php
-                                include("../log/dbconnect.php");
+                            include("../log/dbconnect.php");
 
-                                $result = $conn->query("SELECT store_name From store_data WHERE district = 'coimbatore'");
-                                echo ("<select id='taluk' class='form-control' name='taluk'>");
-                                echo ('<option disabled selected>Select Store</option>');
-                                while ($row = $result->fetch_assoc()) {
-                                    unset($store_name);
-                                    $store_name = $row['store_name'];
-                                    echo ('<option value=" ' . $store_name . '"  >' . $store_name . '</option>');
-                                }
-                                echo "</select>";
-                                ?>
+                            $result = $conn->query("SELECT store_name From store_data WHERE district = '".$_SESSION['district']."'");
+                            echo ("<select id='taluk' class='form-control' name='taluk'>");
+                            echo ('<option disabled selected>Select Store</option>');
+                            while ($row = $result->fetch_assoc()) {
+                                unset($store_name);
+                                $store_name = $row['store_name'];
+                                echo ('<option value=" ' . $store_name . '"  >' . $store_name . '</option>');
+                            }
+                            echo "</select>";
+                            ?>
                                 <span id="districtmsg"></span>
                             </div>
                             <div class="col-sm-3 text-center">

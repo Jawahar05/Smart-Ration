@@ -43,7 +43,7 @@ if(!$_SESSION['status'] == "active") {
                 <!-- navbar items -->
                 <ul class="navbar-nav nav-color">
                     <li>
-                        <a class="navbar-brand" href="../index.php"><i class="fas fa-user mr-1" style="color:#0097e6;"></i>
+                        <a class="navbar-brand"><i class="fas fa-user mr-1" style="color:#0097e6;"></i>
                             Profile</a>
                     </li>
                 </ul>
@@ -52,6 +52,9 @@ if(!$_SESSION['status'] == "active") {
     </div>
     <div class="padding container-fluid">
         <div class="profile-border">
+        <label for="name">Worker Id : </label> <?Php 
+            echo(ucwords($_SESSION['Id']));
+            ?><br>
             <label for="name">Name : </label> <?Php 
             echo(ucwords($_SESSION['user']));
             ?><br>
@@ -59,7 +62,24 @@ if(!$_SESSION['status'] == "active") {
             echo(ucwords($_SESSION['type']));
             ?><br>
             <label>District : </label> <?Php 
+            if($_SESSION['district'] == null)
+            {
+                echo("N/A");
+            } 
+            else
+            {
             echo(ucwords($_SESSION['district']));
+            }
+            ?><br>
+            <label>Store Name : </label> <?Php
+            if($_SESSION['store_name'] == null)
+            {
+                echo("N/A");
+            } 
+            else
+            {
+            echo(ucwords($_SESSION['store_name']));
+            }
             ?>
         </div>
     </div>

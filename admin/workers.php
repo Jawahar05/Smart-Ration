@@ -32,7 +32,7 @@ session_start();
     <script src="../assets/js/main.js"></script>
 </head>
 
-<body class="body" onload="filterSelection('new')">
+<body class="body" onload="filterSelection('new'), hideid()">
     <?php
 if(!$_SESSION['type'] == "Administrator") {
     header("location:../index.php");
@@ -56,9 +56,9 @@ if(!$_SESSION['type'] == "Administrator") {
                     <li class="nav-item active">
                         <a class="nav-link" href="../admin/workers.php">Workers</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="../admin/cards.php">Cards</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/calendar.php">Calendar</a>
                     </li>
@@ -79,9 +79,12 @@ if(!$_SESSION['type'] == "Administrator") {
                                     ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                            <a class="dropdown-item" href="../Profile/profile.php">Profile</a>
-                            <button type="submit" name="submit" class="dropdown-item" href="#">Logout</button>
-
+                        <a class="dropdown-item" href="../Profile/profile.php">
+                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                            Profile</a>
+                            <button type="submit" name="submit" class="dropdown-item" href="#">
+                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                            Logout</button>
                         </div>
                     </div>
                 </form>
@@ -157,16 +160,16 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label for="position">Position</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="position" class="form-control" name="postion">
+                                <select id="position" class="form-control" name="postion" onchange="getposition(this.value)">
                                     <option disabled selected>Select Position</option>
+                                    <option value="administrator">Administrator</option>
                                     <option value="supervisor">Supervisor</option>
                                     <option value="supplier">Supplier</option>
-                                    <option value="administrator">Administrator</option>
                                 </select>
                                 <span id="positionmsg"></span>
                             </div>
                         </div>
-                        <div class="row form-group">
+                        <div id="disid" class="row form-group">
                             <div class="col-sm-2">
                                 <label for="district">District</label>
                             </div>
@@ -180,14 +183,14 @@ if(!$_SESSION['type'] == "Administrator") {
                                 while ($row = $result->fetch_assoc()) {
                                     unset($district_name);
                                     $district_name = $row['district_name'];
-                                    echo ('<option value=" ' . $district_name . '"  >' . $district_name . '</option>');
+                                    echo ('<option value="'.$district_name.'"  >' .$district_name. '</option>');
                                 }
                                 echo "</select>";
                                 ?>
                                 <span id="districtmsg"></span>
                             </div>
                         </div>
-                        <div class="row form-group">
+                        <div class="row form-group" id="storeid">
                             <div class="col-sm-2">
                                 <label for="store">Store Name</label>
                             </div>
@@ -201,16 +204,16 @@ if(!$_SESSION['type'] == "Administrator") {
                                 while ($row = $result->fetch_assoc()) {
                                     unset($store_name);
                                     $store_name = $row['store_name'];
-                                    echo ('<option value=" ' . $store_name . '"  >' . $store_name . '</option>');
+                                    echo ('<option value=" '.$store_name.'"  >' . $store_name . '</option>');
                                 }
                                 echo "</select>";
                                 ?>
                                 <span id="storenamemsg"></span>
                             </div>
-                            <div class="col-sm-3 text-center">
+                        </div>
+                        <div class="col-sm text-center">
                                 <button type="submit" name="newsubmit" value="newsubmit" class="btn">Submit</button>
                             </div>
-                        </div>
                     </form>
                 </div>
 
@@ -226,7 +229,7 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label for="modify-empid">Employee ID</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="modify-empid" type="text" name="nameid" class="form-control" placeholder="Employee Id to modify">
+                                <input id="modify-empid" type="text" name="nameid" class="form-control" placeholder="Employee Id to modify" required>
                             </div>
                         </div>
                         <div class="row form-group">

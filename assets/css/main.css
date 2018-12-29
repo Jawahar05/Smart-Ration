@@ -132,8 +132,8 @@ th, td, tr {
 
 .profile-border {
     border: 2px solid #636e72;
-    margin: 0;
-    width: 50%;
+    margin-left: 35%;
+    width: 35%;
     height: auto;
     padding: 01%;
 }

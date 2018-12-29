@@ -47,39 +47,29 @@ function getvalue(district) {
     var search = district;
 }
 
-//validate new workers form
-// function validateForm() {
-//     var x = document.getElementById("newworker");
-//     var bool;
-//     var txt = "";
-//     var i;
-//     for (i = 0; i <= x.length; i++) {
-//         var x = document.getElementById("newworker").elements[i].id;
-//         var y = document.getElementById("newworker").elements[i].value;
-//         if (y == "") {
-//             if( x == "position" && x == "Select Position"){
-//                 alert(x +" " + y + " value in select position" );
-//             var z = document.getElementById("newworker").elements[i].id;
-//             document.getElementById(z).style.borderColor = "red";
-//             document.getElementById(z + "msg").innerHTML = z + " is to be selected";
-//             } else if ( x == "District" && x == "Select District"){
-//                 alert(x +" " + y + " value in select district" );
-//             var z = document.getElementById("newworker").elements[i].id;
-//             document.getElementById(z).style.borderColor = "red";
-//             document.getElementById(z + "msg").innerHTML = z + " is to be selected";
-//             } else {
-//                 alert(x +" " + y + " value denied" );
-//                 var z = document.getElementById("newworker").elements[i].id;
-//                 document.getElementById(z).style.borderColor = "red";
-//                 document.getElementById(z + "msg").innerHTML = z + " is required";
-//             }
 
-//         }
-//          else if (y != "") {
-//             alert(x +" " + y + " value granted");
-//             document.getElementById(z).style.borderColor = "#b2bec3";
-//             document.getElementById(z + "msg").innerHTML = "";
-//         }
-//     }
-//     return false;
-// }
+function getposition(post) {
+    var p = post;
+    var x = document.getElementById("disid");
+    var y = document.getElementById("storeid");
+    if (post == "supervisor") {
+        x.style.visibility = "visible";
+        y.style.visibility = "hidden";
+    }
+    if (p == "supplier") {
+        x.style.visibility = "visible";
+        y.style.visibility = "visible";
+    }
+    if(p == "administrator"){
+        x.style.visibility = "hidden";
+        y.style.visibility = "hidden";
+    }
+}
+
+function hideid()
+{
+    var x = document.getElementById("disid");
+    var y = document.getElementById("storeid");
+    x.style.visibility = "hidden";
+    y.style.visibility = "hidden";
+}

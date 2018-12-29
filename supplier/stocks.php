@@ -5,8 +5,8 @@
 
     <!-- PHP Session -->
     <?php
-session_start();
-?>
+    session_start();
+    ?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
@@ -33,11 +33,11 @@ session_start();
 <body class="body">
     <!-- php check -->
     <?php
-if (!$_SESSION['type'] == "supplier") {
-    header("location:../index.php");
-    exit();
-}
-?>
+    if (!$_SESSION['type'] == "supplier") {
+        header("location:../index.php");
+        exit();
+    }
+    ?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -70,18 +70,21 @@ if (!$_SESSION['type'] == "supplier") {
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                <div class="dropdown show mr-5">
+                    <div class="dropdown show mr-5">
                         <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
                             <?php
-                                   echo(ucwords($_SESSION['user']));
-                                    ?>
+                            echo (ucwords($_SESSION['user']));
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                            <a class="dropdown-item" href="../Profile/profile.php">Profile</a>
-                            <button type="submit" name="submit" class="dropdown-item" href="#">Logout</button>
-
+                            <a class="dropdown-item" href="../Profile/profile.php">
+                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                            Profile</a>
+                            <button type="submit" name="submit" class="dropdown-item" href="#">
+                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                            Logout</button>
                         </div>
                     </div>
                 </form>
@@ -90,7 +93,88 @@ if (!$_SESSION['type'] == "supplier") {
     </div>
 
     <div class="container-liquid padding">
-        <p class="text-center mt-2">Store details to be updated..!</p>
+        <?php 
+//include database
+    include "../log/dbconnect.php";
+
+    // $user = $_SESSION['user'];
+    // $state = "SELECT store_name FROM worker_login WHERE worker_name = '$user'";
+    // $exe = $conn->query($state);
+    // $fetch = mysqli_fetch_assoc($exe);
+    $store = $_SESSION['store_name'];
+                            //query
+    $statement = "SELECT store_id, store_name, required_rice, available_rice, alloted_rice, remaining_rice,
+                     required_sugar, available_sugar, alloted_sugar, remaining_sugar,
+                      required_wheat, available_wheat, alloted_wheat, remaining_wheat,
+                      required_dhall, available_dhall, alloted_dhall, remaining_dhall FROM store_data WHERE store_name = '$store'";
+                            //table creation header
+    echo "<table border='3' class='text-center'>
+                                <tr>
+                                <th rowspan='2'>Store Code</th>
+                                <th rowspan='2'>Store Name</th>
+                                <th colspan='4'>Rice (Kg)</th>
+                                <th colspan='4'>Sugar (Kg)</th>
+                                <th colspan='4'>Dhall (Kg)</th>
+                                <th colspan='4'>Wheat (Kg)</th>
+                                </tr>
+                                
+                                
+                                <tr>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                <th>Req</th>
+                                <th>Aval</th>
+                                <th>Alot</th>
+                                <th>Rem</th>
+                                </tr>
+                                ";
+                            //execute
+    $result = $conn->query($statement);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+                            // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
+            echo "<tr>";
+            echo "<td>" . $row['store_id'] . "</td>";
+            echo "<td>" . $row['store_name'] . "</td>";
+
+            echo "<td>" . $row['required_rice'] . "</td>";
+            echo "<td>" . $row['available_rice'] . "</td>";
+            echo "<td>" . $row['alloted_rice'] . "</td>";
+            echo "<td>" . $row['remaining_rice'] . "</td>";
+
+            echo "<td>" . $row['required_sugar'] . "</td>";
+            echo "<td>" . $row['available_sugar'] . "</td>";
+            echo "<td>" . $row['alloted_sugar'] . "</td>";
+            echo "<td>" . $row['remaining_sugar'] . "</td>";
+
+
+            echo "<td>" . $row['required_dhall'] . "</td>";
+            echo "<td>" . $row['available_dhall'] . "</td>";
+            echo "<td>" . $row['alloted_dhall'] . "</td>";
+            echo "<td>" . $row['remaining_dhall'] . "</td>";
+
+            echo "<td>" . $row['required_wheat'] . "</td>";
+            echo "<td>" . $row['available_wheat'] . "</td>";
+            echo "<td>" . $row['alloted_wheat'] . "</td>";
+            echo "<td>" . $row['remaining_wheat'] . "</td>";
+
+
+            echo "</tr>";
+        }
+    }
+    echo "</table>";
+    ?>
     </div>
 </body>
 

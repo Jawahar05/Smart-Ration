@@ -56,9 +56,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/workers.php">Workers</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="../admin/cards.php">Cards</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/calendar.php">Calendar</a>
                     </li>
@@ -78,9 +78,14 @@
                                     ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                            <a class="dropdown-item" href="../Profile/profile.php">Profile</a>
-                            <button type="submit" name="submit" class="dropdown-item" href="#">Logout</button>
-
+                        <a class="dropdown-item" href="../Profile/profile.php">
+                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                            Profile</a>
+                            <button type="submit" name="submit" class="dropdown-item" href="#">
+                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                            Logout</button>
+                            
+</form>
                         </div>
                     </div>
             </div>
@@ -109,10 +114,7 @@
                             //include database
                     include "../log/dbconnect.php";
                             //query
-                    $statement = "SELECT district_code, district_name, required_rice, available_rice, alloted_rice, remaining_rice,
-                     required_sugar, available_sugar, alloted_sugar, remaining_sugar,
-                      required_wheat, available_wheat, alloted_wheat, remaining_wheat,
-                      required_dhall, available_dhall, alloted_dhall, remaining_dhall FROM district_data WHERE district_code > 0";
+                    $statement = "SELECT *FROM district_data WHERE district_code > 0";
                             //table creation header
                     echo "<table border='3' class='text-center'>
                                 <tr>
@@ -206,11 +208,7 @@
                             //include database
                     include "../log/dbconnect.php";
                             //query
-                    $statement = "SELECT store_id, store_name, district,
-                    required_rice, available_rice, alloted_rice, remaining_rice,
-                     required_sugar, available_sugar, alloted_sugar, remaining_sugar,
-                      required_wheat, available_wheat, alloted_wheat, remaining_wheat,
-                      required_dhall, available_dhall, alloted_dhall, remaining_dhall FROM store_data WHERE store_id > 0";
+                    $statement = "SELECT *FROM store_data WHERE store_id > 0";
                             //table creation header
                     echo "<table border='3' class='text-center mt-3'>
                                 <tr>

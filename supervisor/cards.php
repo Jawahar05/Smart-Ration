@@ -81,9 +81,12 @@
                                     ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                            <a class="dropdown-item" href="../Profile/profile.php">Profile</a>
-                            <button type="submit" name="submit" class="dropdown-item" href="#">Logout</button>
-
+                        <a class="dropdown-item" href="../Profile/profile.php">
+                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                            Profile</a>
+                            <button type="submit" name="submit" class="dropdown-item" href="#">
+                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                            Logout</button>
                         </div>
                     </div>
                 </form>
@@ -156,7 +159,7 @@
                             <?php
                                 include("../log/dbconnect.php");
 
-                                $result = $conn->query("SELECT store_name From store_data WHERE district = 'coimbatore'");
+                                $result = $conn->query("SELECT store_name From store_data WHERE district = '".$_SESSION['district']."'");
                                 echo ("<select id='taluk' class='form-control' name='taluk'>");
                                 echo ('<option disabled selected>Select Store</option>');
                                 while ($row = $result->fetch_assoc()) {

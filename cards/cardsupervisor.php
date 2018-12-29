@@ -13,7 +13,9 @@ if (isset($_POST['newsubmit'])) {
     $members = $_POST['members'];
     $cardtype = $_POST['cardtype'];
     $datejoined = date("Y/m/d");
-    $district = "Erode";
+    $district = $_SESSION['district'];
+
+    echo($district);
     //cardnumber
     $cardnumber = date("dmyhis");
     try {

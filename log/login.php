@@ -20,10 +20,12 @@ if (isset($_POST['submit'])) {
         if ($row = mysqli_fetch_assoc($result)) {
             //authenticating
             if ($pass == $row['password']) {
+                $_SESSION['Id'] = $row['id'];
                 $_SESSION['user'] = $row['worker_name'];
                 $_SESSION['type'] = $row['position'];
                 $_SESSION['status'] = "active";
                 $_SESSION['district'] = $row['district'];
+                $_SESSION['store_name'] = $row['store_name'];
                 //authorizing
                 if ($_SESSION['type'] == "administrator") {
                     header("location:../admin/home.php");

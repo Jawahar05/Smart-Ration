@@ -8,11 +8,17 @@ include('../log/dbconnect.php');
     
     //on add new submit
 if (isset($_POST['newsubmit'])) {
-    $workername = $_POST['firstname'] . " " . $_POST['lastname'];
+    if($_POST['lastname'] == ""){
+        $workername = $_POST['firstname'];
+    }
+    else {
+        $workername = $_POST['firstname'] . " " . $_POST['lastname'];
+    }
     $password = $_POST['password'];
     $mobile = $_POST['mobilenumber'];
     $email = $_POST['email'];
     $position = $_POST['postion'];
+    $district = preg_replace("/\s+/","",$_POST['district']);
 
     if ($position == "administrator") {
         $district = null;
@@ -21,11 +27,9 @@ if (isset($_POST['newsubmit'])) {
     } else if ($position == "supervisor") {
         $store = null;
         $taluk = null;
-        $district = $_POST['district'];
     } else if ($position == "supplier") {
-        $district = $_POST['district'];
-        $taluk = $_POST['store'];
-        $store = $_POST['store'];
+        $taluk = preg_replace("/\s+/","",$_POST['store']);
+        $store = preg_replace("/\s+/","",$_POST['store']);
     }
 
     $datejoined = date("Y/m/d");
@@ -39,8 +43,9 @@ if (isset($_POST['newsubmit'])) {
             echo ('<script language="javascript">alert("Worker alerady exist.")</script>');
         } else {
              //query
-            $addvalue = "INSERT INTO worker_login (worker_name, password, position, mobile, mail, store_name, taluk, district, date_joined) 
-        VALUES ('$workername', '$password', '$position', '$mobile', '$email', '$store', '$taluk', '$district', '$datejoined')";
+            $addvalue = "INSERT INTO worker_login 
+            (worker_name, password, position, mobile, mail, store_name, taluk, district, date_joined) VALUES 
+            ('$workername', '$password', '$position', '$mobile', '$email', '$store', '$taluk', '$district', '$datejoined')";
 
             if ($conn->query($addvalue) === true) {
                 echo ('<script language="javascript"> alert("Worker added successfully") </script>');
@@ -61,10 +66,62 @@ if (isset($_POST['newsubmit'])) {
 }
 
 
+
+
+
+
+
+
+
+
+
     //Modify submit
 else if (isset($_POST['modifysubmit'])) {
-    echo ("Modify submit");
+    $Id = $_POST['nameid'];
+    try{
+        $check = "SELECT *FROM worker_login WHERE id  = $Id";
+        $execute = $conn->query($check);
+
+        if (mysqli_num_rows($execute) == 0) {
+            echo ('<script language="javascript">alert("No Worker Id exist.")</script>');
+        } else {
+            if ($row = mysqli_fetch_assoc($execute)) {
+                $_SESSION['EWId'] = $row['id'];
+                $_SESSION['EWuser'] = $row['worker_name'];
+                $_SESSION['EWmobile'] = $row['mobile'];
+                $_SESSION['EWtype'] = $row['position'];
+                $_SESSION['EWdistrict'] = $row['district'];
+                $_SESSION['EWstore_name'] = $row['store_name'];
+
+                echo($_SESSION['EWId']. $_SESSION['EWuser'] . $_SESSION['EWmobile'] .  $_SESSION['EWtype'] . $_SESSION['EWdistrict'] . $_SESSION['EWstore_name']);
+
+                header("Location:../admin/editworkers.php");
+                exit();
+            }
+        }
+    }
+    catch(Exception $ex)
+    {
+        $_SESSION['error'] = $e;
+        header("Location:../error/error.php");
+        exit();
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //remove submit
 else if (isset($_POST['removeSubmit'])) {
