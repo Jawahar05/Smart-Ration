@@ -5,8 +5,8 @@
 
     <!-- PHP Session -->
     <?php
-session_start();
-?>
+    session_start();
+    ?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
@@ -34,11 +34,11 @@ session_start();
 
 <body class="body">
     <?php
-if(!$_SESSION['type'] == "Administrator") {
-    header("location:../index.php");
-    exit();
-}
- ?>
+    if (!$_SESSION['type'] == "Administrator") {
+        header("location:../index.php");
+        exit();
+    }
+    ?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -76,8 +76,8 @@ if(!$_SESSION['type'] == "Administrator") {
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
                             <?php
-                                    echo(ucwords($_SESSION['user']));
-                                    ?>
+                            echo (ucwords($_SESSION['user']));
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
                         <a class="dropdown-item" href="../Profile/profile.php">
@@ -92,6 +92,54 @@ if(!$_SESSION['type'] == "Administrator") {
                 </form>
             </div>
         </nav>
+    </div>
+
+    <!-- Body Content -->
+    <div class="container padding">
+        <?php
+        $a = date('t');
+        $day = "Holiday";
+        include("../log/dbconnect.php");
+        if (date('j') == 1) {
+            $conn->query("TRUNCATE TABLE calendar");
+            echo ("Removing previous     datas...<br>");
+            for ($i = 1; $i <= $a; $i++) {
+                $addvalue = "INSERT INTO calendar (date_cal, day_cal) VALUES('$i', '')";
+                if (!$conn->query($addvalue)) {
+                    echo ("Table " . $i . "Insertion error...!! <br>");
+                }
+            }
+            echo("New calendar created successfully.");
+        } else {
+            $statement = "SELECT *FROM calendar WHERE id > 0";
+            //table creation header
+    echo "<table border='3' class='text-center'>
+                <tr>
+                <th>Date</th>
+                <th>Details</th>
+                </tr>
+                ";
+            //execute
+    $result = $conn->query($statement);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
+            echo "<tr>";
+
+            echo "<td>" . $row['date_cal'] . "</td>";
+            echo "<td>" . $row['day_cal'] . "</td>";
+
+            echo "</tr>";
+        }
+    } else {
+        echo("<tr>");
+        echo "<td colspan='18' class='text-warning'>" . "Data not Found" . "</td>";
+        echo("</tr>");
+    }
+    echo "</table>";
+        }
+        ?>
     </div>
 </body>
 

@@ -125,6 +125,7 @@ else if (isset($_POST['modifysubmit'])) {
 
     //remove submit
 else if (isset($_POST['removeSubmit'])) {
-    echo ("Remove submit");
+   $RemoveId = $_POST['nameid'];
+   echo($RemoveId);
 }
 ?>

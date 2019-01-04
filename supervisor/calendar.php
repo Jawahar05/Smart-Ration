@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    
-<!-- PHP Session -->
-<?php
+
+    <!-- PHP Session -->
+    <?php
 session_start();
 ?>
 
@@ -28,8 +29,9 @@ session_start();
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
 </head>
+
 <body class="body">
-<?php
+    <?php
 if (!$_SESSION['type'] == "supervisor") {
     header("location:../index.php");
     exit();
@@ -67,26 +69,63 @@ if (!$_SESSION['type'] == "supervisor") {
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                <div class="dropdown show mr-5">
+                    <div class="dropdown show mr-5">
                         <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
                             <?php
-                                    echo(ucwords($_SESSION['user']));
-                                    ?>
+                            echo (ucwords($_SESSION['user']));
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                        <a class="dropdown-item" href="../Profile/profile.php">
-                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
-                            Profile</a>
+                            <a class="dropdown-item" href="../Profile/profile.php">
+                                <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                                Profile</a>
                             <button type="submit" name="submit" class="dropdown-item" href="#">
-                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
-                            Logout</button>
+                                <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                                Logout</button>
                         </div>
                     </div>
                 </form>
             </div>
         </nav>
     </div>
+
+    <!-- calendar table -->
+    <div class="container padding">
+        <?php
+
+        include("../log/dbconnect.php");
+
+        $statement = "SELECT *FROM calendar WHERE id > 0";
+        //table creation header
+        echo "<table border='3' class='text-center'>
+            <tr>
+            <th>Date</th>
+            <th>Details</th>
+            </tr>
+            ";
+        //execute
+        $result = $conn->query($statement);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+        // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
+                echo "<tr>";
+
+                echo "<td>" . $row['date_cal'] . "</td>";
+                echo "<td>" . $row['day_cal'] . "</td>";
+
+                echo "</tr>";
+            }
+        } else {
+            echo ("<tr>");
+            echo "<td colspan='18' class='text-warning'>" . "Data not Found" . "</td>";
+            echo ("</tr>");
+        }
+        echo "</table>";
+        ?>
+    </div>
 </body>
+
 </html>

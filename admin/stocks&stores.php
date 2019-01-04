@@ -153,6 +153,7 @@
                         while ($row = $result->fetch_assoc()) {
                             // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
                             echo "<tr>";
+
                             echo "<td>" . $row['district_code'] . "</td>";
                             echo "<td>" . $row['district_name'] . "</td>";
 
@@ -180,6 +181,10 @@
 
                             echo "</tr>";
                         }
+                    } else {
+                        echo("<tr>");
+                        echo "<td colspan='18' class='text-warning'>" . "Data not Found" . "</td>";
+                        echo("</tr>");
                     }
                     echo "</table>";
                     ?>
@@ -197,13 +202,13 @@
                 <!-- **************** Stores *********************-->
                 <!-- **************************************************** -->
 
-                <div id="modifycards mt-2" class="filterDiv stores">
-                    <div class="row">
+                <div id="modifycards" class="filterDiv stores">
+                    <!-- <div class="row">
                         <div>
                             <a href="#" class="btn-menu" style="text-decoration: none;">New Store</a>
                             <a href="#" class="btn-menu ml-2">Modify Store</a>
                         </div>
-                    </div>
+                    </div> -->
                     <?php 
                             //include database
                     include "../log/dbconnect.php";
@@ -276,6 +281,10 @@
 
                             echo "</tr>";
                         }
+                    }else {
+                        echo("<tr>");
+                        echo "<td colspan='18' class='text-warning'>" . "Data not Found" . "</td>";
+                        echo("</tr>");
                     }
                     echo "</table>";
                     ?>

@@ -137,3 +137,11 @@ th, td, tr {
     height: auto;
     padding: 01%;
 }
+
+.calendar-border {
+    border: 2px solid #2c3e50;
+    width: 150px;
+    height: 100px;
+    padding-top: 35px; 
+    text-align: center;
+}
