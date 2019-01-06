@@ -96,6 +96,9 @@
 
     <!-- Body Content -->
     <div class="container padding">
+
+    <h5 class="text-center mb-3"> For the Month of <strong><?php echo(date('F')); ?></strong></h5>
+
         <?php
         $a = date('t');
         $day = "Holiday";

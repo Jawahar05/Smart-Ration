@@ -32,7 +32,7 @@
     <script src="../assets/js/main.js"></script>
 </head>
 
-<body class="body" onload="filterSelection('new')">
+<body class="body" onload="filterSelection('new'), hideid()">
     <?php
     if (!$_SESSION['type'] == "Administrator") {
         header("location:../index.php");
@@ -58,20 +58,25 @@
     <div class="padding ml-5">
         <div class="col-sm-9">
             <div class="filterDiv new">
-                <form id="newworker" name="newform" class="mt-3" action="#" method="POST"
-                    onsubmit="return validateForm()">
+                <form id="updateworker" name="newform" class="mt-3" action="../workers/workerupdate.php" method="POST" onsubmit="return validateForm()">
+                        <div class="row form-group">
+                                <div class="col-sm-2">
+                                    <label for="workerid">Worker Id</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input id="workerid" type="text" name="id" class="form-control" placeholder="Name"
+                                        value="<?php echo($_SESSION['EWId']) ?>" disabled required>
+                                    <span id="firstnamemsg"></span>
+                                </div>
+                            </div>
                     <div class="row form-group">
                         <div class="col-sm-2">
                             <label for="firstname">Name</label>
                         </div>
                         <div class="col-sm-3">
-                            <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name"
-                                required>
+                            <input id="firstname" type="text" name="name" class="form-control" placeholder="Name"
+                                value="<?php echo($_SESSION['EWuser']) ?>" disabled required>
                             <span id="firstnamemsg"></span>
-                        </div>
-                        <div class="col-sm-3">
-                            <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Last Name">
-                            <span id="lastnamemsg"></span>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -79,8 +84,9 @@
                             <label for="mobilenumber">Mobile Number</label>
                         </div>
                         <div class="col-sm-3">
-                            <input id="mobilenumber" type="text" name="mobilenumber" class="form-control" placeholder="Mobile Number" value="<?php
-                            $_SESSION['EWmobile'];
+                            <input id="mobilenumber" type="text" name="mobilenumber" class="form-control" placeholder="Mobile Number"
+                                disabled value="<?php
+                            echo($_SESSION['EWmobile']);
                             ?>"
                                 required>
                             <span id="mobilenumbermsg"></span>
@@ -92,7 +98,7 @@
                         </div>
                         <div class="col-sm-3">
                             <input id="email" type="email" name="email" class="form-control" placeholder="Email Id"
-                                required>
+                                value="<?php echo($_SESSION['EWmail']); ?>" required disabled>
                             <span id="emailmsg"></span>
                         </div>
                     </div>
@@ -152,8 +158,13 @@
                             <span id="storenamemsg"></span>
                         </div>
                     </div>
-                    <div class="col-sm text-center">
-                        <button type="submit" name="newsubmit" value="newsubmit" class="btn">Submit</button>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <button type="submit" name="update" value="update" class="btn">update</button>
+                        </div>
+                        <div class="col-sm-3">
+                                <a class="btn" href="../admin/workers.php">Cancel</a>
+                            </div>
                     </div>
                 </form>
             </div>

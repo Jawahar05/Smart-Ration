@@ -5,8 +5,8 @@
 
     <!-- PHP Session -->
     <?php
-session_start();
-?>
+    session_start();
+    ?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
@@ -34,11 +34,11 @@ session_start();
 
 <body class="body" onload="filterSelection('new'), hideid()">
     <?php
-if(!$_SESSION['type'] == "Administrator") {
-    header("location:../index.php");
-    exit();
-}
- ?>
+    if (!$_SESSION['type'] == "Administrator") {
+        header("location:../index.php");
+        exit();
+    }
+    ?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -70,21 +70,21 @@ if(!$_SESSION['type'] == "Administrator") {
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                <div class="dropdown show mr-5">
+                    <div class="dropdown show mr-5">
                         <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
                             <?php
-                                    echo(ucwords($_SESSION['user']));
-                                    ?>
+                            echo (ucwords($_SESSION['user']));
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                        <a class="dropdown-item" href="../Profile/profile.php">
-                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
-                            Profile</a>
+                            <a class="dropdown-item" href="../Profile/profile.php">
+                                <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                                Profile</a>
                             <button type="submit" name="submit" class="dropdown-item" href="#">
-                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
-                            Logout</button>
+                                <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                                Logout</button>
                         </div>
                     </div>
                 </form>
@@ -113,14 +113,41 @@ if(!$_SESSION['type'] == "Administrator") {
             <!-- **************************************************** -->
 
             <div id="addnewworker" class="col-sm-9">
+                
+            <?php
+            if (isset($_SESSION['success'])) {
+                echo ("<div class='alert alert-success alert-dismissible fade show container' role='alert'>");
+                echo ($_SESSION['success']);
+                unset($_SESSION['success']);
+                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>");
+            }
+            ?>
+
+            <?php
+            if (isset($_SESSION['warning'])) {
+                echo ("<div class='alert alert-warning alert-dismissible fade show container' role='alert'>");
+                echo ($_SESSION['warning']);
+                unset($_SESSION['warning']);
+                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                        <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>");
+            }
+            ?>
+
                 <div class="filterDiv new">
-                    <form id="newworker" name="newform" class="mt-3" action="../workers/workeradmin.php" method="POST" onsubmit="return validateForm()">
+                    <form id="newworker" name="newform" class="mt-3" action="../workers/workeradmin.php" method="POST"
+                        onsubmit="return validateForm()">
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label for="firstname">Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name" required>
+                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="First Name"
+                                    required>
                                 <span id="firstnamemsg"></span>
                             </div>
                             <div class="col-sm-3">
@@ -133,7 +160,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label for="password">Password</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="password" type="password" name="password" class="form-control" placeholder="Password" required>
+                                <input id="password" type="password" name="password" class="form-control" placeholder="Password"
+                                    required>
                                 <span id="passwordmsg"></span>
                             </div>
                         </div>
@@ -142,7 +170,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label for="mobilenumber">Mobile Number</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="mobilenumber" type="text" name="mobilenumber" class="form-control" placeholder="Mobile Number" required>
+                                <input id="mobilenumber" type="text" name="mobilenumber" class="form-control"
+                                    placeholder="Mobile Number" required>
                                 <span id="mobilenumbermsg"></span>
                             </div>
                         </div>
@@ -151,7 +180,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label for="email">Email</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="email" type="email" name="email" class="form-control" placeholder="Email Id" required>
+                                <input id="email" type="email" name="email" class="form-control" placeholder="Email Id"
+                                    required>
                                 <span id="emailmsg"></span>
                             </div>
                         </div>
@@ -174,7 +204,7 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label for="district">District</label>
                             </div>
                             <div class="col-sm-3">
-                            <?php
+                                <?php
                                 include("../log/dbconnect.php");
 
                                 $result = $conn->query("SELECT district_name From district_data WHERE district_code > 0");
@@ -183,7 +213,7 @@ if(!$_SESSION['type'] == "Administrator") {
                                 while ($row = $result->fetch_assoc()) {
                                     unset($district_name);
                                     $district_name = $row['district_name'];
-                                    echo ('<option value="'.$district_name.'"  >' .$district_name. '</option>');
+                                    echo ('<option value="' . $district_name . '"  >' . $district_name . '</option>');
                                 }
                                 echo "</select>";
                                 ?>
@@ -204,7 +234,7 @@ if(!$_SESSION['type'] == "Administrator") {
                                 while ($row = $result->fetch_assoc()) {
                                     unset($store_name);
                                     $store_name = $row['store_name'];
-                                    echo ('<option value=" '.$store_name.'"  >' . $store_name . '</option>');
+                                    echo ('<option value=" ' . $store_name . '"  >' . $store_name . '</option>');
                                 }
                                 echo "</select>";
                                 ?>
@@ -212,8 +242,8 @@ if(!$_SESSION['type'] == "Administrator") {
                             </div>
                         </div>
                         <div class="col-sm text-center">
-                                <button type="submit" name="newsubmit" value="newsubmit" class="btn">Submit</button>
-                            </div>
+                            <button type="submit" name="newsubmit" value="newsubmit" class="btn">Submit</button>
+                        </div>
                     </form>
                 </div>
 
@@ -229,7 +259,8 @@ if(!$_SESSION['type'] == "Administrator") {
                                 <label for="modify-empid">Employee ID</label>
                             </div>
                             <div class="col-sm-3">
-                                <input id="modify-empid" type="text" name="nameid" class="form-control" placeholder="Employee Id to modify" required>
+                                <input id="modify-empid" type="text" name="nameid" class="form-control" placeholder="Employee Id to modify"
+                                    required>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -245,8 +276,20 @@ if(!$_SESSION['type'] == "Administrator") {
                 <!-- **************************************************** -->
                 <!-- **************** Remove workers *********************-->
                 <!-- **************************************************** -->
-
                 <div id="removeworker" class="filterDiv remove">
+
+                    <?php
+                //     if (isset($_SESSION['success'])) {
+                //         echo ("<div class='alert alert-success alert-dismissible fade show container' role='alert'>");
+                //         echo ($_SESSION['success']);
+                //         unset($_SESSION['success']);
+                //         echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                //         <span aria-hidden='true'>&times;</span>
+                //     </button>
+                // </div>");
+                //     }
+                    ?>
+
                     <form class="mt-3" name="removeform" action="../workers/workeradmin.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">

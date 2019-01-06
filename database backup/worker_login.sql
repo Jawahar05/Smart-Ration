@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2018 at 07:00 AM
+-- Generation Time: Jan 06, 2019 at 04:13 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -36,9 +36,8 @@ CREATE TABLE `worker_login` (
   `Status` tinyint(1) NOT NULL DEFAULT '0',
   `mobile` int(15) NOT NULL,
   `mail` varchar(100) NOT NULL,
-  `store_name` varchar(100) NOT NULL,
-  `store_code` varchar(100) NOT NULL,
-  `taluk` varchar(100) NOT NULL,
+  `store_name` varchar(100) NOT NULL DEFAULT 'N/A',
+  `taluk` varchar(100) NOT NULL DEFAULT 'N/A',
   `district` text NOT NULL,
   `date_joined` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -47,10 +46,14 @@ CREATE TABLE `worker_login` (
 -- Dumping data for table `worker_login`
 --
 
-INSERT INTO `worker_login` (`id`, `worker_name`, `password`, `position`, `Status`, `mobile`, `mail`, `store_name`, `store_code`, `taluk`, `district`, `date_joined`) VALUES
-(0001, 'Admin', '123', 'Administrator', 0, 123465789, 'admin.01@gmail.com', '', '', '', '', '2018-11-01'),
-(0002, 'Supplier', '123', 'Supplier', 0, 1234567890, 'supplier.01@gmail.com', 'Perundurai', 'ERPPRI01', 'Perundurai', 'Erode', '2018-11-14'),
-(0003, 'Supervisor', '123', 'Supervisor', 0, 1324567890, 'supervisor.01@gmail.com', '', '', 'Perundurai', 'Erode', '2018-11-06');
+INSERT INTO `worker_login` (`id`, `worker_name`, `password`, `position`, `Status`, `mobile`, `mail`, `store_name`, `taluk`, `district`, `date_joined`) VALUES
+(0003, 'Supplier', '123', 'supplier', 0, 456, 'supplier@gmail.com', 'Perundurai', 'Perundurai', 'Erode', '2018-12-29'),
+(0004, 'Supervisor', '123', 'supervisor', 0, 789, 'supervisor@gmail.com', '', '', 'Erode', '2018-12-29'),
+(0005, 'Jawahar T', '123', 'administrator', 0, 850, 'ram@ram.arw', '', '', '', '2018-12-29'),
+(0009, 'JAwa har', '123', 'supervisor', 0, 408, 'Supplier@asd.asd', '', '', 'Kanyakumari', '2019-01-05'),
+(0010, 'JAwa haar', '123', 'administrator', 0, 409, 'Supplier@asd.asd', '', '', '', '2019-01-05'),
+(0011, 'Admin', '123', 'administrator', 0, 123, 'admin@gmail.com', '', '', '', '2019-01-05'),
+(0015, 'dinesh a', '123', 'supplier', 0, 994, 'dinesh@gmail.com', 'Perundurai', 'Perundurai', 'Erode', '2019-01-05');
 
 --
 -- Indexes for dumped tables
@@ -70,7 +73,7 @@ ALTER TABLE `worker_login`
 -- AUTO_INCREMENT for table `worker_login`
 --
 ALTER TABLE `worker_login`
-  MODIFY `id` int(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

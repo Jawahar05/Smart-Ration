@@ -57,8 +57,8 @@ session_start();
                             ?>
                         </div>
                         <div class="form-group py-4">
-                            <label for="user_id"><i class="fas fa-id-badge fa-lg"></i> User Name</label>
-                            <input name="username" type="text" class="form-control" id="user_id" placeholder="Enter User Name" required>
+                            <label for="user_id"><i class="fas fa-id-badge fa-lg"></i> Worker ID</label>
+                            <input name="username" type="text" class="form-control" id="user_id" placeholder="Enter Worker ID" required>
                         </div>
                         <div class="form-group">
                             <label for="password"><i class="fas fa-unlock-alt fa-lg"></i> Password</label>

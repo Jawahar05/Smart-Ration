@@ -183,6 +183,10 @@
 
                         echo "</tr>";
                     }
+                }else {
+                    echo("<tr>");
+                    echo "<td colspan='18' class='text-danger'><strong>" . "No Data Found" . "</strong></td>";
+                    echo("</tr>");
                 }
                 echo "</table>";
                 ?>
@@ -271,6 +275,10 @@
 
                         echo "</tr>";
                     }
+                }else {
+                    echo("<tr>");
+                    echo "<td colspan='18' class='text-danger'><strong>" . "No Data Found" . "</strong></td>";
+                    echo("</tr>");
                 }
                 echo "</table>";
                 ?>

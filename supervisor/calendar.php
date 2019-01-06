@@ -93,6 +93,8 @@ if (!$_SESSION['type'] == "supervisor") {
 
     <!-- calendar table -->
     <div class="container padding">
+
+    <h5 class="text-center mb-3"> For the Month of <strong><?php echo(date('F')); ?></strong></h5>
         <?php
 
         include("../log/dbconnect.php");

@@ -73,3 +73,13 @@ function hideid()
     x.style.visibility = "hidden";
     y.style.visibility = "hidden";
 }
+
+function redirect()
+{
+    location.href = "../admin/workers.php";
+}
+
+function clac(p)
+{
+    alert("Call of on change function ");
+}

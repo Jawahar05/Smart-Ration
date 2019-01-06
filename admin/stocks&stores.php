@@ -183,7 +183,7 @@
                         }
                     } else {
                         echo("<tr>");
-                        echo "<td colspan='18' class='text-warning'>" . "Data not Found" . "</td>";
+                        echo "<td colspan='18' class='text-danger'><strong>" . "No Data Found" . "</strong></td>";
                         echo("</tr>");
                     }
                     echo "</table>";
@@ -283,7 +283,7 @@
                         }
                     }else {
                         echo("<tr>");
-                        echo "<td colspan='18' class='text-warning'>" . "Data not Found" . "</td>";
+                        echo "<td colspan='18' class='text-danger'><strong>" . "No Data Found" . "</strong></td>";
                         echo("</tr>");
                     }
                     echo "</table>";
@@ -302,7 +302,7 @@
                 <!-- **************************************************** -->
 
                 <div id="removeworker" class="filterDiv allocate">
-                    <form id="allocate" name="allocate" class="mt-3" action="#">
+                    <form id="allocate" name="allocate" class="mt-3" action="../stores/districtallot.php"  method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label>District</label>
@@ -312,7 +312,7 @@
                                 include("../log/dbconnect.php");
 
                                 $result = $conn->query("SELECT district_name From district_data WHERE district_code > 0");
-                                echo ("<select id='taluk' class='form-control' name='taluk'>");
+                                echo ("<select id='district' class='form-control' name='district'>");
                                 echo ('<option disabled selected>Select District</option>');
                                 while ($row = $result->fetch_assoc()) {
                                     unset($district_name);
@@ -324,7 +324,7 @@
                                 <span id="districtmsg"></span>
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="submit" value="submit" class="btn">Submit</button>
+                                <button type="submit" name="check" value="check" class="btn">Check</button>
                             </div>
                         </div>
                     </form>
