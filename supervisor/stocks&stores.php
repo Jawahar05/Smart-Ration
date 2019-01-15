@@ -296,7 +296,7 @@
                 <!-- **************************************************** -->
 
                 <div id="removeworker" class="filterDiv allocate">
-                    <form id="allocate" name="allocate" class="mt-3" action="#">
+                    <form id="allocate" name="allocate" class="mt-3" action="../stores/storesallot.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label>Store</label>
@@ -318,7 +318,7 @@
                                 <span id="districtmsg"></span>
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="submit" value="submit" class="btn">Submit</button>
+                                <button type="submit" name="check" value="check" class="btn">Submit</button>
                             </div>
                         </div>
                     </form>
