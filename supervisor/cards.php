@@ -116,6 +116,29 @@
             <!-- **************************************************** -->
 
             <div id="addnewcards" class="col-sm-9">
+            <?php
+            if (isset($_SESSION['success'])) {
+                echo ("<div class='alert alert-success alert-dismissible fade show container' role='alert'>");
+                echo ($_SESSION['success']);
+                unset($_SESSION['success']);
+                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>");
+            }
+            ?>
+
+            <?php
+            if (isset($_SESSION['warning'])) {
+                echo ("<div class='alert alert-warning alert-dismissible fade show container' role='alert'>");
+                echo ($_SESSION['warning']);
+                unset($_SESSION['warning']);
+                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                        <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>");
+            }
+            ?>
                 <div class="filterDiv new">
                     <form name="newcard" class="mt-3" action="../cards/cardsupervisor.php" method="POST">
                         <div class="row form-group">
@@ -214,7 +237,7 @@
                 <!-- **************************************************** -->
 
                 <div id="modifycards" class="filterDiv modify">
-                    <form class="mt-3">
+                    <form class="mt-3" action="../cards/cardsupervisor.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label>Card Number</label>
@@ -228,7 +251,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button id="modifysubmit" type="submit" name="modifySubmit" class="btn">Submit</button>
+                                <button id="modifysubmit" type="submit" name="modifySubmit" class="btn">Modify</button>
                             </div>
                         </div>
                     </form>
@@ -239,7 +262,7 @@
                 <!-- **************************************************** -->
 
                 <div id="removeworker" class="filterDiv remove">
-                    <form class="mt-3">
+                    <form class="mt-3" action="../cards/cardsupervisor.php" method="POST">
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label>Card Number</label>
@@ -253,7 +276,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3 text-center">
-                                <button type="submit" name="Submit" class="btn">Submit</button>
+                                <button type="submit" name="remove" class="btn">Remove</button>
                             </div>
                         </div>
                     </form>

@@ -102,8 +102,6 @@ else if (isset($_POST['modifysubmit'])) {
                 $_SESSION['EWdistrict'] = $row['district'];
                 $_SESSION['EWstore_name'] = $row['store_name'];
 
-                echo ($_SESSION['EWId'] . $_SESSION['EWuser'] . $_SESSION['EWmobile'] . $_SESSION['EWtype'] . $_SESSION['EWdistrict'] . $_SESSION['EWstore_name']);
-
                 header("Location:../admin/editworkers.php");
                 exit();
             }

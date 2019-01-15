@@ -46,73 +46,42 @@ if (!$_SESSION['type'] == "supplier") {
                 <!-- navbar items -->
                 <ul class="navbar-nav nav-color">
                     <li>
-                        <a class="navbar-brand" href="../index.php"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
-                            Supplier</a>
+                        <a class="navbar-brand"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
+                            Supply</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../supplier/home.php">Home<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../supplier/schedule.php">Schedule</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../supplier/stocks.php">Stocks</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../supplier/notification.php">Notification</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="../supplier/stocks&stores.php">Stores & Stocks</a>
-                    </li> -->
                 </ul>
 
 
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                <div class="dropdown show mr-5">
+                    <div class="dropdown show mr-5">
                         <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
                             <?php
-                                    echo(ucwords($_SESSION['user']));
+                                   echo(ucwords($_SESSION['user']));
                                     ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                        <a class="dropdown-item" href="../Profile/profile.php">
-                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
-                            Profile</a>
+                            <a class="dropdown-item" href="../Profile/profile.php">
+                                <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                                Profile</a>
                             <button type="submit" name="submit" class="dropdown-item" href="#">
-                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
-                            Logout</button>
+                                <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                                Logout</button>
                         </div>
                     </div>
                 </form>
             </div>
         </nav>
     </div>
-    <div class="padding">
-        <form class="mt-3 text-center">
-            <div class="row form-group">
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-2">
-                    <label>Card Number</label>
-                </div>
-                <div class="col-sm-2">
-                    <input type="text" name="cardnumber" class="form-control" placeholder="Enter Card Number" required>
-                </div>
-                <div class="col-sm-1 text-center">
-                        <button type="submit" name="Submit" class="btn">Check</button>
-                    </div>
-            </div>
-            <div class="row form-group">
-                
-            </div>
-        </form>
-    </div>
     <div class="padding container-liquid text-center">
-    <textarea class="home-textarea" placeholder="Previous done bills..!" readonly></textarea>
+        <div>
+            <form>
+                <h1 class="text-center">Upgrading...</h1>
+            </form>
+        </div>
     </div>
 </body>
 
