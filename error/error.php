@@ -60,7 +60,7 @@ session_start();
             </div>
         </nav>
     </div>
-    <div class="pt-5 mt-5 padding">
+    <div class="pt-3 padding">
         <h6>
             <?php
                 if (isset($_SESSION['error'])) {

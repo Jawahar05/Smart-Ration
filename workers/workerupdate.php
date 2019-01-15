@@ -35,14 +35,18 @@ if(isset($_POST['update'])){
               taluk = '$taluk',
                district = '$district'
              WHERE id = $id";
+             echo("code inserted");
             if (mysqli_query($conn, $updatevalue)) {
                 $_SESSION['success'] = "Worker with Id no " . $id . " updated Successfully";
                 header("Location:../admin/workers.php");
                 exit();
             } else {
-                $_SESSION['error'] = ("Error: " . "<br>" . $conn->error);
-                header("Location:../error/error.php");
-                exit();
+                // $_SESSION['error'] = ("Error: " . "<br>" . $conn->error);
+                // header("Location:../error/error.php");
+                // exit();
             }
+
+    echo("Id : ". $id . "<br>Name : " . $name . "<br>Mobile : " .$mobile . "<br>Email : " .$email . "<br>Positon : " .$position
+. "<br>District : " . $district . "<br>Taluk : " .$taluk );
 }
 ?>

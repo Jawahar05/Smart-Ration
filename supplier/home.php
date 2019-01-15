@@ -111,9 +111,6 @@ if (!$_SESSION['type'] == "supplier") {
             </div>
         </form>
     </div>
-    <div class="padding container-liquid text-center">
-    <textarea class="home-textarea" placeholder="Previous done bills..!" readonly></textarea>
-    </div>
 </body>
 
 </html>

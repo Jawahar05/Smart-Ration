@@ -36,7 +36,7 @@ session_start();
             <!-- Heading column-->
             <div class="col-sm">
                 <div class="text-center heading">
-                    <img class="img-fluid" src="./assets/images/logo.png" style="width: 100px;">
+                    <img class="img-fluid" src="./assets/images/logo.png" style="width: 90px;">
                     <p>Reservation Based <br>Smart Ration System</p>
                 </div>
             </div>
