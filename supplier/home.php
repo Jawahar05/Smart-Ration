@@ -5,8 +5,8 @@
 
     <!-- PHP Session -->
     <?php
-session_start();
-?>
+    session_start();
+    ?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
@@ -33,11 +33,11 @@ session_start();
 <body class="body">
     <!-- php check -->
     <?php
-if (!$_SESSION['type'] == "supplier") {
-    header("location:../index.php");
-    exit();
-}
-?>
+    if (!$_SESSION['type'] == "supplier") {
+        header("location:../index.php");
+        exit();
+    }
+    ?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -70,21 +70,21 @@ if (!$_SESSION['type'] == "supplier") {
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                <div class="dropdown show mr-5">
+                    <div class="dropdown show mr-5">
                         <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
                             <?php
-                                    echo(ucwords($_SESSION['user']));
-                                    ?>
+                            echo (ucwords($_SESSION['user']));
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                        <a class="dropdown-item" href="../Profile/profile.php">
-                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
-                            Profile</a>
+                            <a class="dropdown-item" href="../Profile/profile.php">
+                                <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                                Profile</a>
                             <button type="submit" name="submit" class="dropdown-item" href="#">
-                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
-                            Logout</button>
+                                <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                                Logout</button>
                         </div>
                     </div>
                 </form>
@@ -92,7 +92,42 @@ if (!$_SESSION['type'] == "supplier") {
         </nav>
     </div>
     <div class="padding">
-        <form class="mt-3 text-center">
+        <?php
+    if (isset($_SESSION['success'])) {
+        echo ("<div class='alert alert-success alert-dismissible fade show container' role='alert'>");
+        echo ($_SESSION['success']);
+        unset($_SESSION['success']);
+        echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>");
+    }
+    ?>
+
+        <?php
+            if (isset($_SESSION['warning'])) {
+                echo ("<div class='alert alert-warning alert-dismissible fade show container' role='alert'>");
+                echo ($_SESSION['warning']);
+                unset($_SESSION['warning']);
+                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                        <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>");
+            }
+            ?>
+
+        <?php
+if (isset($_SESSION['info'])) {
+    echo ("<div class='alert alert-info alert-dismissible fade show container' role='alert'>");
+    echo ($_SESSION['info']);
+    unset($_SESSION['info']);
+    echo ("<button type='button' class='close text-success' data-dismiss='alert' aria-label='Close'>
+                                        <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>");
+}
+?>
+        <form class="mt-3 text-center" action="../supply/supplycheck.php" method="POST">
             <div class="row form-group">
                 <div class="col-sm-2">
                 </div>
@@ -103,16 +138,12 @@ if (!$_SESSION['type'] == "supplier") {
                     <input type="text" name="cardnumber" class="form-control" placeholder="Enter Card Number" required>
                 </div>
                 <div class="col-sm-1 text-center">
-                        <button type="submit" name="Submit" class="btn">Check</button>
-                    </div>
+                    <button type="submit" name="checkcard" class="btn">Check</button>
+                </div>
             </div>
             <div class="row form-group">
-                
             </div>
         </form>
-    </div>
-    <div class="padding container-liquid text-center">
-    <textarea class="home-textarea" placeholder="Previous done bills..!" readonly></textarea>
     </div>
 </body>
 

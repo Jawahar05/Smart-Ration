@@ -24,7 +24,7 @@ if (isset($_POST['updatecard'])) {
         WHERE card_number = '$cardnumber'";
 
         if (mysqli_query($conn, $update)) {
-            $_SESSION['success'] = "Worker with card number " . $cardnumber . " updated Successfully";
+            $_SESSION['success'] = "Card number " . $cardnumber . " has been updated Successfully";
             header("Location:../supervisor/cards.php");
             exit();
         } else {

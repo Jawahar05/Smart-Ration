@@ -5,8 +5,8 @@
 
     <!-- PHP Session -->
     <?php
-session_start();
-?>
+    session_start();
+    ?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
@@ -28,16 +28,18 @@ session_start();
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
+        <!-- css -->
+        
 </head>
 
 <body class="body">
     <!-- php check -->
     <?php
-if (!$_SESSION['type'] == "supplier") {
-    header("location:../index.php");
-    exit();
-}
-?>
+    if (!$_SESSION['type'] == "supplier") {
+        header("location:../index.php");
+        exit();
+    }
+    ?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -75,8 +77,8 @@ if (!$_SESSION['type'] == "supplier") {
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
                             <?php
-                                   echo(ucwords($_SESSION['user']));
-                                    ?>
+                            echo (ucwords($_SESSION['user']));
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
                         <a class="dropdown-item" href="../Profile/profile.php">
@@ -90,6 +92,76 @@ if (!$_SESSION['type'] == "supplier") {
                 </form>
             </div>
         </nav>
+    </div>
+
+    <div class="container-liquid padding">
+        <?php 
+//include database
+        include "../log/dbconnect.php";
+
+        date_default_timezone_set("Asia/Kolkata");
+        $store = $_SESSION['store_name'];
+        $currentdate = date('Y-m-d');
+        $currenttime = date('h:i a');
+        if ($currenttime <= "09:00 am" && $currenttime >= "11:00 am") {
+            $set = '1';
+        } else if ($currenttime >= "11:00 am" && $currenttime <= "01:00 pm") {
+            $set = '2';
+        } else if ($currenttime >= "01:00 pm" && $currenttime <= "04:00 pm") {
+            $set = '3';
+        } else if ($currenttime >= "11:00 am" && $currenttime <= "01:00 pm") {
+            $set = '4';
+        } else {
+            $set = 'null';
+        }
+        echo("<div class='row text-center text-primary'>");
+        
+        echo("<div class='col-sm-4'>");
+        echo ("<p><strong> Date : </strong>" . $currentdate . "</p>");
+        echo("</div>");
+
+        echo("<div class='col-sm-4'>");
+        echo ("<p><strong> Time : </strong>" . $currenttime . "</p>");
+        echo("</div>");        
+
+        echo("<div class='col-sm-4'>");
+        echo ("<p><strong> Set : </strong>" . $set . "</p>");
+        echo("</div>");
+        echo("</div>");
+                            //query 
+        $statement = "SELECT * FROM cards WHERE reservation_date = '$currentdate' AND reservation_set <= '$set' AND store = '$store' AND status = '0'";
+                            //table creation header
+        echo "<table border='3' class='text-center'>
+                                <tr>
+                                <th>Card Number</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th colspan= '5'>Set</th>
+                                </tr>
+                                
+                                ";
+                            //execute
+        $result = $conn->query($statement);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                            // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
+                echo "<tr>";
+                echo "<td>" . $row['card_number'] . "</td>";
+                echo "<td>" . $row['name'] . "</td>";
+                echo "<td>" . $row['mobile'] . "</td>";
+                echo "<td>" . $row['reservation_set'] . "</td>";
+
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr>";
+            echo "<td class='text-primary' colspan='4'> " . "No Schedule available" . "</td>";
+
+            echo "</tr>";
+        }
+        echo "</table>";
+        ?>
     </div>
 </body>
 

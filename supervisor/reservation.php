@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    
-<!-- PHP Session -->
-<?php
+
+    <!-- PHP Session -->
+    <?php
 session_start();
 ?>
 
@@ -27,9 +28,13 @@ session_start();
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
+
+    <script src="../assets/js/main.js"></script>
+
 </head>
-<body class="body">
-<?php
+
+<body class="body" onload="filterSelection('new')">
+    <?php
 if (!$_SESSION['type'] == "supervisor") {
     header("location:../index.php");
     exit();
@@ -67,7 +72,7 @@ if (!$_SESSION['type'] == "supervisor") {
             </div>
             <div>
                 <form class="form-group form-inline" action="../log/logout.php" method="POST">
-                <div class="dropdown show mr-5">
+                    <div class="dropdown show mr-5">
                         <a href="#" role="button" id="dropdownprofile" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
@@ -76,17 +81,61 @@ if (!$_SESSION['type'] == "supervisor") {
                                     ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
-                        <a class="dropdown-item" href="../Profile/profile.php">
-                            <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
-                            Profile</a>
+                            <a class="dropdown-item" href="../Profile/profile.php">
+                                <i class="fas fa-user mr-2" style="font-size: 15px;"></i>
+                                Profile</a>
                             <button type="submit" name="submit" class="dropdown-item" href="#">
-                            <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
-                            Logout</button>
+                                <i class="fas fa-sign-out-alt mr-2" style="font-size: 15px;"></i>
+                                Logout</button>
                         </div>
                     </div>
                 </form>
             </div>
         </nav>
     </div>
+   
+
+    <div id="cards" class="padding">
+        <div class="row">
+
+            <!-- **************************************************** -->
+            <!-- **************** left Panel *********************-->
+            <!-- **************************************************** -->
+
+            <div id="myBtnContainer" class="col-sm-2 panel">
+                <button class="btn-panel" onclick="filterSelection('new')"><i class="ml-2 fas fa-database panel-fa mr-3"></i>Details</button>
+                <button class="btn-panel" onclick="filterSelection('modify')"><i class="ml-2 fas fa-redo-alt panel-fa mr-3"></i>Reset</button>
+                <button class="btn-panel text-danger" onclick="filterSelection('remove')"><i class="ml-2 fas fa-user-slash panel-fa mr-3 text-danger"></i>YTBD</button>
+            </div>
+
+            <!-- **************************************************** -->
+            <!-- **************** Add cards *********************-->
+            <!-- **************************************************** -->
+
+            <div id="addnewcards" class="col-sm-9">
+                <div class="filterDiv new">
+                    <h4 class="text-center">Details</h4>
+                </div>
+
+
+                <!-- **************************************************** -->
+                <!-- **************** Modify cards *********************-->
+                <!-- **************************************************** -->
+
+                <div id="modifycards" class="filterDiv modify">
+                <h4 class="text-center">Reset</h4>
+                </div>
+
+                <!-- **************************************************** -->
+                <!-- **************** Remove cards *********************-->
+                <!-- **************************************************** -->
+
+                <div id="removeworker" class="filterDiv remove">
+                <h4 class="text-center text-danger">Y T B D</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
