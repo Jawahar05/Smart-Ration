@@ -123,7 +123,7 @@ if (!$_SESSION['type'] == "supplier") {
                 <th>Name</th>
                 <th>Qty</th>
                 <th>Rate (&#8377;)</th>
-                <th>Total</th>
+                <th>Total (&#8377;)</th>
             </tr>
                <?php
                 if ($type == "commodity") {
@@ -139,8 +139,8 @@ if (!$_SESSION['type'] == "supplier") {
                         echo ("</tr>");
                     }
                     echo ("<tr>
-                    <th colspan='4'>Grand Total</th>
-                    <td>130.00</td>
+                    <th colspan='4'>Grand Total (&#8377;)</th>
+                    <td>73.00</td>
                 </tr>");
                 } else if ($type == "sugar") {
                     $executecmd = "SELECT *FROM sugar_card WHERE no >= '0'";
@@ -155,8 +155,8 @@ if (!$_SESSION['type'] == "supplier") {
                         echo ("</tr>");
                     }
                     echo ("<tr>
-                    <th colspan='4'>Grand Total</th>
-                    <td>112.50</td>
+                    <th colspan='4'>Grand Total (&#8377;)</th>
+                    <td>113.50</td>
                 </tr>");
 
                 }

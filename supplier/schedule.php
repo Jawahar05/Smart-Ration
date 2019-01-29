@@ -61,7 +61,7 @@
                         <a class="nav-link" href="../supplier/stocks.php">Stocks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../supplier/notification.php">Notification</a>
+                        <a class="nav-link" href="../supplier/reservation.php">Reservation</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="../supplier/stocks&stores.php">Stores & Stocks</a>

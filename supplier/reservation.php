@@ -5,8 +5,8 @@
 
     <!-- PHP Session -->
     <?php
-    session_start();
-    ?>
+session_start();
+?>
 
     <!-- Required meta -->
     <meta charset="utf-8" />
@@ -28,16 +28,18 @@
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
+    <script src="../assets/js/main.js"></script>
+
 </head>
 
-<body class="body">
+<body class="body" onload="filterSelection('condition')">
     <!-- php check -->
     <?php
-    if (!$_SESSION['type'] == "supplier") {
-        header("location:../index.php");
-        exit();
-    }
-    ?>
+if (!$_SESSION['type'] == "supplier") {
+    header("location:../index.php");
+    exit();
+}
+?>
     <!-- Navigation bar -->
     <div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top justify-content-between">
@@ -49,7 +51,7 @@
                         <a class="navbar-brand" href="../index.php"><i class="fas fa-shopping-cart" style="color:#0097e6;"></i>
                             Supplier</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="../supplier/home.php">Home<span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
@@ -58,12 +60,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../supplier/stocks.php">Stocks</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item  active">
                         <a class="nav-link" href="../supplier/reservation.php">Reservation</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="../supplier/stocks&stores.php">Stores & Stocks</a>
-                    </li> -->
                 </ul>
 
 
@@ -75,8 +74,8 @@
                             aria-expanded="false" style="color:black;">
                             <i class="fas fa-user" style="font-size: 25px;"></i>
                             <?php
-                            echo (ucwords($_SESSION['user']));
-                            ?>
+                                   echo(ucwords($_SESSION['user']));
+                                    ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownmenulink">
                             <a class="dropdown-item" href="../Profile/profile.php">
@@ -91,20 +90,41 @@
             </div>
         </nav>
     </div>
-    <div class="padding">
-        <?php
-    if (isset($_SESSION['success'])) {
-        echo ("<div class='alert alert-success alert-dismissible fade show container' role='alert'>");
-        echo ($_SESSION['success']);
-        unset($_SESSION['success']);
-        echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+
+    <!-- Body content -->
+
+    <div id="cards" class="padding">
+        <div class="row">
+
+            <!-- **************************************************** -->
+            <!-- **************** left Panel *********************-->
+            <!-- **************************************************** -->
+
+            <div id="myBtnContainer" class="col-sm-3 panel">
+                <button class="btn-panel" onclick="filterSelection('condition')"><i class="ml-2 fas fa-toolbox panel-fa mr-3"></i>Pre
+                    Condition</button>
+                <button class="btn-panel" onclick="filterSelection('message')"><i class="ml-2 fas fa-comment panel-fa mr-3"></i>Message</button>
+                <button class="btn-panel" onclick="filterSelection('setting')"><i class="ml-2 fas fa-cog panel-fa mr-3"></i>Settings</button>
+            </div>
+
+            <!-- **************************************************** -->
+            <!-- **************** Condition *********************-->
+            <!-- **************************************************** -->
+
+            <div id="addnewcards" class="col-sm-9">
+                <?php
+            if (isset($_SESSION['success'])) {
+                echo ("<div class='alert alert-success alert-dismissible fade show container' role='alert'>");
+                echo ($_SESSION['success']);
+                unset($_SESSION['success']);
+                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button>
                 </div>");
-    }
-    ?>
+            }
+            ?>
 
-        <?php
+                <?php
             if (isset($_SESSION['warning'])) {
                 echo ("<div class='alert alert-warning alert-dismissible fade show container' role='alert'>");
                 echo ($_SESSION['warning']);
@@ -115,35 +135,61 @@
                                 </div>");
             }
             ?>
+                <div class="filterDiv condition">
+                    <form action="../reservation/precondition.php" method="POST">
+                        <div class="row form-group">
+                            <div class="col-3 text-right">
+                                <label for="totaldays">Total Days :</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="form-control" name="totaldays" placeholder="Total no of days" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-3 text-right">
+                                <label for="holidays">Total Holidays :</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="form-control" name="totaldays" placeholder="Total no of holidays"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-3 text-right">
+                                <label for="cards">Total Cards :</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="form-control" name="totaldays" placeholder="Total no of Cards" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-7 text-center">
+                                <button class="btn" name="apply">Okay</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-        <?php
-if (isset($_SESSION['info'])) {
-    echo ("<div class='alert alert-info alert-dismissible fade show container' role='alert'>");
-    echo ($_SESSION['info']);
-    unset($_SESSION['info']);
-    echo ("<button type='button' class='close text-success' data-dismiss='alert' aria-label='Close'>
-                                        <span aria-hidden='true'>&times;</span>
-                                    </button>
-                                </div>");
-}
-?>
-        <form class="mt-3 text-center" action="../supply/supplycheck.php" method="POST">
-            <div class="row form-group">
-                <div class="col-sm-2">
+
+                <!-- **************************************************** -->
+                <!-- **************** Message *********************-->
+                <!-- **************************************************** -->
+
+                <div class="filterDiv message">
+                    <h1>Message</h1>
                 </div>
-                <div class="col-sm-2">
-                    <label>Card Number</label>
+
+                <!-- **************************************************** -->
+                <!-- **************** Settings *********************-->
+                <!-- **************************************************** -->
+
+                <div class="filterDiv setting">
+                    <h1>Settings</h1>
                 </div>
-                <div class="col-sm-2">
-                    <input type="text" name="cardnumber" class="form-control" placeholder="Enter Card Number" required>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <button type="submit" name="checkcard" class="btn">Check</button>
-                </div>
+
             </div>
-            <div class="row form-group">
-            </div>
-        </form>
+        </div>
+    </div>
     </div>
 </body>
 

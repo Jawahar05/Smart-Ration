@@ -44,7 +44,7 @@ session_start();
             <!-- login column -->
             <div class="col-sm">
                 <div class="mt-5">
-                    
+
                     <!-- Login form -->
                     <form class="border shadow-lg" action="./log/login.php" method="POST">
                         <h3 class="text-center"><i class="fas fa-sign-in-alt"></i><strong> Login</strong></h3>
@@ -58,18 +58,20 @@ session_start();
                         </div>
                         <div class="form-group py-4">
                             <label for="user_id"><i class="fas fa-id-badge fa-lg"></i> Worker ID</label>
-                            <input name="username" type="text" class="form-control" id="user_id" placeholder="Enter Worker ID" required>
+                            <input name="username" type="text" class="form-control" id="user_id" placeholder="Enter Worker ID"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="password"><i class="fas fa-unlock-alt fa-lg"></i> Password</label>
-                            <input name="password" type="password" class="form-control" id="password" placeholder="Enter Password" required>
+                            <input name="password" type="password" class="form-control" id="password" placeholder="Enter Password"
+                                required>
                         </div>
                         <button name="submit" type="submit" class="btn">Login</button>
                         <p class="text-center"><a href="./development.php">Forget Password.?</a></p>
+                        <a href="../smartration/dummyinterface/interface.php">Interface</a>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
     <p class="text-center">Browser compatible: <img src="./assets/images/chrome.png"> Google Chrome</p>
