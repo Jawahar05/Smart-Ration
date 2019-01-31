@@ -57,6 +57,14 @@
                     <input class="form-control" name="msg_input" placeholder="date value" required />
                 </div>
             </div>
+            <div class="row mt-3">
+                <div class="col-4">
+                    <label for="mobile">Mobile : </label>
+                </div>
+                <div class="col-4">
+                    <input class="form-control" name="mobile" placeholder="Mobile Number" required />
+                </div>
+            </div>
             <div class="mt-3">
                 <button name="check" type="submit" class="btn">Check Date</button>
             </div>

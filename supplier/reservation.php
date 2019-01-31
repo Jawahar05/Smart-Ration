@@ -139,13 +139,13 @@ if (!$_SESSION['type'] == "supplier") {
                     <form action="../reservation/precondition.php" method="POST">
                         <div class="row form-group">
                             <div class="col-3 text-right">
-                                <label for="totaldays">Total Days :</label>
+                                <label for="totaldays">Total Working Days :</label>
                             </div>
                             <div class="col-3">
                                 <input class="form-control" name="totaldays" placeholder="Total no of days" required>
                             </div>
                         </div>
-                        <div class="row form-group">
+                        <!-- <div class="row form-group">
                             <div class="col-3 text-right">
                                 <label for="holidays">Total Holidays :</label>
                             </div>
@@ -153,13 +153,13 @@ if (!$_SESSION['type'] == "supplier") {
                                 <input class="form-control" name="totaldays" placeholder="Total no of holidays"
                                     required>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row form-group">
                             <div class="col-3 text-right">
                                 <label for="cards">Total Cards :</label>
                             </div>
                             <div class="col-3">
-                                <input class="form-control" name="totaldays" placeholder="Total no of Cards" required>
+                                <input class="form-control" name="cards" placeholder="Total no of Cards" required>
                             </div>
                         </div>
                         <div class="row form-group">
