@@ -70,9 +70,9 @@
             </div>
         </form>
     </div>
-    <div class="container">
+    <!-- <div class="container">
         <textarea class="home-textarea mt-5" placeholder="Message" readonly></textarea>
-    </div>
+    </div> -->
 </body>
 
 </html>

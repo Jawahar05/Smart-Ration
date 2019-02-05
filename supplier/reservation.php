@@ -94,6 +94,40 @@ if (!$_SESSION['type'] == "supplier") {
     <!-- Body content -->
 
     <div id="cards" class="padding">
+        <?php
+        if(isset($_SESSION['newmonth'])) {
+            echo ("<div class='alert alert-success alert-dismissible fade show container' role='alert'>");
+                    echo($_SESSION['newmonth']);
+                    unset($_SESSION['newmonth']);
+                    echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>");
+        }
+        ?>
+        <?php
+            if (isset($_SESSION['success'])) {
+                echo ("<div class='alert alert-success alert-dismissible fade show container' role='alert'>");
+                echo ($_SESSION['success']);
+                unset($_SESSION['success']);
+                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>");
+            }
+            ?>
+
+        <?php
+            if (isset($_SESSION['warning'])) {
+                echo ("<div class='alert alert-warning alert-dismissible fade show container' role='alert'>");
+                echo ($_SESSION['warning']);
+                unset($_SESSION['warning']);
+                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                        <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>");
+            }
+            ?>
         <div class="row">
 
             <!-- **************************************************** -->
@@ -112,54 +146,22 @@ if (!$_SESSION['type'] == "supplier") {
             <!-- **************************************************** -->
 
             <div id="addnewcards" class="col-sm-9">
-                <?php
-            if (isset($_SESSION['success'])) {
-                echo ("<div class='alert alert-success alert-dismissible fade show container' role='alert'>");
-                echo ($_SESSION['success']);
-                unset($_SESSION['success']);
-                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                    </button>
-                </div>");
-            }
-            ?>
-
-                <?php
-            if (isset($_SESSION['warning'])) {
-                echo ("<div class='alert alert-warning alert-dismissible fade show container' role='alert'>");
-                echo ($_SESSION['warning']);
-                unset($_SESSION['warning']);
-                echo ("<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                                        <span aria-hidden='true'>&times;</span>
-                                    </button>
-                                </div>");
-            }
-            ?>
                 <div class="filterDiv condition">
                     <form action="../reservation/precondition.php" method="POST">
-                        <div class="row form-group">
-                            <div class="col-3 text-right">
-                                <label for="totaldays">Total Working Days :</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-control" name="totaldays" placeholder="Total no of days" required>
-                            </div>
-                        </div>
-                        <!-- <div class="row form-group">
-                            <div class="col-3 text-right">
-                                <label for="holidays">Total Holidays :</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-control" name="totaldays" placeholder="Total no of holidays"
-                                    required>
-                            </div>
-                        </div> -->
                         <div class="row form-group">
                             <div class="col-3 text-right">
                                 <label for="cards">Total Cards :</label>
                             </div>
                             <div class="col-3">
                                 <input class="form-control" name="cards" placeholder="Total no of Cards" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-3 text-right">
+                                <label for="totaldays">Total Working Days :</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="form-control" name="totaldays" placeholder="Total working days" required>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -184,9 +186,71 @@ if (!$_SESSION['type'] == "supplier") {
                 <!-- **************************************************** -->
 
                 <div class="filterDiv setting">
-                    <h1>Settings</h1>
-                </div>
+                    <form action="../reservation/reset.php" method="POST">
+                        <div class="container">
+                            <!-- <button class="btn mt-2" name="resetmnth" data-toggle="tooltip" title="Reset cards and calendar monthly data changes">Monthly
+                                reset</button><br> -->
+                            <button class="btn mt-5" name="resetdata" data-toggle="tooltip" title="Reset calendar data changes">Data
+                                reset</button>
+                        </div>
+                    </form>
+                     <!-- Button trigger modal -->
+        <button type="button" class="btn mt-5" data-toggle="modal" data-target="#exampleModal">
+            View Calendar
+        </button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+    <h5 class="text-center mb-3">Calendar for the Month of <strong><?php echo(date('F')); ?></strong></h5>
+
+                    </div>
+                    <div class="modal-body">
+                        <?php
+                         include("../log/dbconnect.php");
+
+                         $statement = "SELECT *FROM calendar WHERE id > 0";
+                         //table creation header
+                         echo "<table border='3' class='text-center'>
+                             <tr>
+                             <th>Date</th>
+                             <th>Details</th>
+                             </tr>
+                             ";
+                         //execute
+                         $result = $conn->query($statement);
+                 
+                         if ($result->num_rows > 0) {
+                             while ($row = $result->fetch_assoc()) {
+                         // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
+                                 echo "<tr>";
+                 
+                                 echo "<td>" . $row['date_cal'] . "</td>";
+                                 echo "<td>" . $row['day_cal'] . "</td>";
+                 
+                                 echo "</tr>";
+                             }
+                         } else {
+                             echo ("<tr>");
+                             echo "<td colspan='18' class='text-warning'>" . "Data not Found" . "</td>";
+                             echo ("</tr>");
+                         }
+                         echo "</table>";
+
+                        ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+                </div>
+                
             </div>
         </div>
     </div>

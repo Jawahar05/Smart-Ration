@@ -87,7 +87,7 @@ if (!$_SESSION['type'] == "supplier") {
     }
     ?>
     <div class="padding container-liquid">
-        <form>
+        <form action="../supply/bill.php" method="POST">
             <div class="row">
                 <div class="col-2 text-center">
                     <label for="cardnumber">Card Number</label>
