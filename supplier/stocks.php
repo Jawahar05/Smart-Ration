@@ -110,17 +110,17 @@
                             //table creation header
     echo "<table border='3' class='text-center'>
                                 <tr>
-                                <th rowspan='2'>Store Code</th>
-                                <th rowspan='2'>Store Name</th>
-                                <th colspan='4'>Rice (Kg)</th>
-                                <th colspan='4'>Sugar (Kg)</th>
-                                <th colspan='4'>Dhall (Kg)</th>
-                                <th colspan='4'>Wheat (Kg)</th>
+                                <th>Store Code</th>
+                                <th>Store Name</th>
+                                <th>Rice (Kg)</th>
+                                <th>Sugar (Kg)</th>
+                                <th>Dhall (Kg)</th>
+                                <th>Wheat (Kg)</th>
                                 </tr>
                                 
                                 
-                                <tr>
-                                <th>Req</th>
+                               <!--  <tr>
+                               <th>Req</th>
                                 <th>Aval</th>
                                 <th>Alot</th>
                                 <th>Rem</th>
@@ -136,7 +136,7 @@
                                 <th>Aval</th>
                                 <th>Alot</th>
                                 <th>Rem</th>
-                                </tr>
+                                </tr> -->
                                 ";
                             //execute
     $result = $conn->query($statement);
@@ -148,26 +148,26 @@
             echo "<td>" . $row['store_id'] . "</td>";
             echo "<td>" . $row['store_name'] . "</td>";
 
-            echo "<td>" . $row['required_rice'] . "</td>";
+            // echo "<td>" . $row['required_rice'] . "</td>";
             echo "<td>" . $row['available_rice'] . "</td>";
-            echo "<td>" . $row['alloted_rice'] . "</td>";
-            echo "<td>" . $row['remaining_rice'] . "</td>";
+            // echo "<td>" . $row['alloted_rice'] . "</td>";
+            // echo "<td>" . $row['remaining_rice'] . "</td>";
 
-            echo "<td>" . $row['required_sugar'] . "</td>";
+            // echo "<td>" . $row['required_sugar'] . "</td>";
             echo "<td>" . $row['available_sugar'] . "</td>";
-            echo "<td>" . $row['alloted_sugar'] . "</td>";
-            echo "<td>" . $row['remaining_sugar'] . "</td>";
+            // echo "<td>" . $row['alloted_sugar'] . "</td>";
+            // echo "<td>" . $row['remaining_sugar'] . "</td>";
 
 
-            echo "<td>" . $row['required_dhall'] . "</td>";
+            // echo "<td>" . $row['required_dhall'] . "</td>";
             echo "<td>" . $row['available_dhall'] . "</td>";
-            echo "<td>" . $row['alloted_dhall'] . "</td>";
-            echo "<td>" . $row['remaining_dhall'] . "</td>";
+            // echo "<td>" . $row['alloted_dhall'] . "</td>";
+            // echo "<td>" . $row['remaining_dhall'] . "</td>";
 
-            echo "<td>" . $row['required_wheat'] . "</td>";
+            // echo "<td>" . $row['required_wheat'] . "</td>";
             echo "<td>" . $row['available_wheat'] . "</td>";
-            echo "<td>" . $row['alloted_wheat'] . "</td>";
-            echo "<td>" . $row['remaining_wheat'] . "</td>";
+            // echo "<td>" . $row['alloted_wheat'] . "</td>";
+            // echo "<td>" . $row['remaining_wheat'] . "</td>";
 
 
             echo "</tr>";

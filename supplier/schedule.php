@@ -129,7 +129,7 @@
         echo("</div>");
         echo("</div>");
                             //query 
-        $statement = "SELECT * FROM cards WHERE reservation_date = '$currentdate' AND reservation_set <= '$set' AND store = '$store' AND status = '0'";
+        $statement = "SELECT * FROM cards WHERE reservation_date = '$currentdate' AND reservation_set = '$set' AND store = '$store' AND status = '0'";
                             //table creation header
         echo "<table border='3' class='text-center'>
                                 <tr>

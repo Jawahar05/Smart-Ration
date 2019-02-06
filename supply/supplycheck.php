@@ -8,6 +8,18 @@ session_start();
 
 //onclick of check
 if (isset($_POST['checkcard'])) {
+    
+    // To check wether stock is available or not
+    $store = "SELECT *FROM store_data WHERE store_name = 'Coimbatore (Central)'";
+
+    $exe = mysqli_query($conn, $store);
+    if ($row = mysqli_fetch_assoc($exe)) {
+        if($row['available_rice'] == 0 || $row['available_sugar'] == 0 || $row['available_wheat'] == 0 || $row['available_dhall'] == 0) {
+            $_SESSION['warning'] = "Insufficient amount of item in stores..";
+            header("Location:../supplier/home.php");
+            exit();
+        }
+    }
     $cardnumber = $_POST['cardnumber'];
     try {
         $check = "SELECT *FROM cards WHERE card_number = $cardnumber";
@@ -34,7 +46,7 @@ if (isset($_POST['checkcard'])) {
                 } else {
                     $set = 'null';
                 }
-                $statement = "SELECT * FROM cards WHERE card_number = '$cardnumber' AND reservation_date = '$currentdate' AND reservation_set <= '$set' AND store = '$store' AND status = '0'";
+                $statement = "SELECT * FROM cards WHERE card_number = '$cardnumber' AND reservation_date = '$currentdate' AND reservation_set = '$set' AND store = '$store' AND status = '0'";
 
                 $exe = mysqli_query($conn, $statement);
 

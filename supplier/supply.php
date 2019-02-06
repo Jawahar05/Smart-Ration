@@ -93,7 +93,7 @@ if (!$_SESSION['type'] == "supplier") {
                     <label for="cardnumber">Card Number</label>
                 </div>
                 <div class="col-2">
-                    <input class="form-control" name="cardnumber" value="<?php echo($cdno); ?>" disabled>
+                    <input class="form-control" name="cardnumber" value="<?php echo($cdno); ?>" readonly>
                 </div>
                 <div class="col-3">
                 </div>
@@ -101,7 +101,7 @@ if (!$_SESSION['type'] == "supplier") {
                     <label for="cardtype">Card Type</label>
                 </div>
                 <div class="col-2">
-                    <input class="form-control" name="cardtype" value="<?php echo(ucwords($type)); ?>" disabled>
+                    <input class="form-control" name="cardtype" value="<?php echo(ucwords($type)); ?>" readonly>
                 </div>
             </div>
             <div class="row pt-5">
@@ -109,7 +109,7 @@ if (!$_SESSION['type'] == "supplier") {
                     <label for="name"> Holder Name</label>
                 </div>
                 <div class="col-2">
-                    <input class="form-control" name="holder" value="<?php echo($name); ?>" disabled>
+                    <input class="form-control" name="holder" value="<?php echo($name); ?>" readonly>
                 </div>
             </div>
     </div>

@@ -7,7 +7,7 @@ if (isset($_POST['check'])) {
     $date = $_POST['msg_input'];
     $mobile = $_POST['mobile'];
 
-    if ($date < date('d')) {
+    if ($date <= date('d')) {
         echo("Date must not be of past date");
     } else {
         $check = "SELECT *FROM cards WHERE mobile = $mobile";

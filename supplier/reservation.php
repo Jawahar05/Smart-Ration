@@ -178,79 +178,109 @@ if (!$_SESSION['type'] == "supplier") {
                 <!-- **************************************************** -->
 
                 <div class="filterDiv message">
-                    <h1>Message</h1>
+                    <form action="../reservation/send.php" method="POST">
+                        <div class="container-liquid">
+                            <textarea class="home-textarea" placeholder="Enter the message to send." required></textarea>
+                        </div>
+                        <div>
+                            <button class="btn mt-3" name="send" type="submit">Send</button>
+                        </div>
+                    </form>
                 </div>
 
                 <!-- **************************************************** -->
                 <!-- **************** Settings *********************-->
                 <!-- **************************************************** -->
 
-                <div class="filterDiv setting">
-                    <form action="../reservation/reset.php" method="POST">
-                        <div class="container">
-                            <!-- <button class="btn mt-2" name="resetmnth" data-toggle="tooltip" title="Reset cards and calendar monthly data changes">Monthly
-                                reset</button><br> -->
-                            <button class="btn mt-5" name="resetdata" data-toggle="tooltip" title="Reset calendar data changes">Data
-                                reset</button>
+                <div class="filterDiv setting container-liquid">
+
+                    <div class="row">
+                        <div class="col-3">
+                            <form action="../reservation/reset.php" method="POST">
+                                <div class="container">
+                                    <button class="btn" name="resetdata" data-toggle="tooltip" title="Reset calendar data changes">Data
+                                        reset</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                     <!-- Button trigger modal -->
-        <button type="button" class="btn mt-5" data-toggle="modal" data-target="#exampleModal">
-            View Calendar
-        </button>
+                        <div class="col-3">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                                View Calendar
+                            </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-    <h5 class="text-center mb-3">Calendar for the Month of <strong><?php echo(date('F')); ?></strong></h5>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="text-center mb-3">Calendar for the Month of <strong>
+                                                    <?php echo(date('F')); ?></strong></h5>
 
-                    </div>
-                    <div class="modal-body">
-                        <?php
-                         include("../log/dbconnect.php");
-
-                         $statement = "SELECT *FROM calendar WHERE id > 0";
-                         //table creation header
-                         echo "<table border='3' class='text-center'>
-                             <tr>
-                             <th>Date</th>
-                             <th>Details</th>
-                             </tr>
-                             ";
-                         //execute
-                         $result = $conn->query($statement);
-                 
-                         if ($result->num_rows > 0) {
-                             while ($row = $result->fetch_assoc()) {
-                         // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
-                                 echo "<tr>";
-                 
-                                 echo "<td>" . $row['date_cal'] . "</td>";
-                                 echo "<td>" . $row['day_cal'] . "</td>";
-                 
-                                 echo "</tr>";
+                                        </div>
+                                        <div class="modal-body">
+                                            <?php
+                             include("../log/dbconnect.php");
+    
+                             $statement = "SELECT *FROM calendar WHERE id > 0";
+                             //table creation header
+                             echo "<table border='3' class='text-center'>
+                                 <tr>
+                                 <th>Date</th>
+                                 <th>Details</th>
+                                 </tr>
+                                 ";
+                             //execute
+                             $result = $conn->query($statement);
+                     
+                             if ($result->num_rows > 0) {
+                                 while ($row = $result->fetch_assoc()) {
+                             // echo "<br>" . $row["district_code"] . "   " . $row["district_name"] . "<br>";
+                                     echo "<tr>";
+                     
+                                     echo "<td>" . $row['date_cal'] . "</td>";
+                                     echo "<td>" . $row['day_cal'] . "</td>";
+                     
+                                     echo "</tr>";
+                                 }
+                             } else {
+                                 echo ("<tr>");
+                                 echo "<td colspan='18' class='text-warning'>" . "Data not Found" . "</td>";
+                                 echo ("</tr>");
                              }
-                         } else {
-                             echo ("<tr>");
-                             echo "<td colspan='18' class='text-warning'>" . "Data not Found" . "</td>";
-                             echo ("</tr>");
-                         }
-                         echo "</table>";
+                             echo "</table>";
+    
+                            ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <form action="../reservation/reset.php" method="POST">
+                                <div class="container">
+                                    <button class="btn" name="calendarreset" data-toggle="tooltip">Calendar
+                                        reset</button><br>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-3">
+                            <form action="../reservation/reset.php" method="POST">
+                                <div class="container">
+                                    <button class="btn" name="rearange" data-toggle="tooltip">Rearrange schedule</button><br>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-                        ?>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                    </form>
+
                 </div>
-            </div>
-        </div>
-                </div>
-                
+
             </div>
         </div>
     </div>

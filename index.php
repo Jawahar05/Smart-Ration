@@ -68,7 +68,6 @@ session_start();
                         </div>
                         <button name="submit" type="submit" class="btn">Login</button>
                         <p class="text-center"><a href="./development.php">Forget Password.?</a></p>
-                        <a href="../smartration/dummyinterface/interface.php">Interface</a>
                     </form>
                 </div>
             </div>
