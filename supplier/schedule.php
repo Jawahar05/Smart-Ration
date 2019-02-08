@@ -103,13 +103,15 @@
         $store = $_SESSION['store_name'];
         $currentdate = date('Y-m-d');
         $currenttime = date('h:i a');
-        if ($currenttime <= "09:00 am" && $currenttime >= "11:00 am") {
+        if ($currenttime >= "09:00 am" && $currenttime <= "10:59 am") {
             $set = '1';
-        } else if ($currenttime >= "11:00 am" && $currenttime <= "01:00 pm") {
+        } else if ($currenttime >= "11:00 am" && $currenttime <= "12:59 pm") {
             $set = '2';
-        } else if ($currenttime >= "01:00 pm" && $currenttime <= "04:00 pm") {
+        } else if ($currenttime >= "01:00 pm" && $currenttime <= "01:59 pm") {
+            $set = 'Lunch';
+        } else if ($currenttime >= "02:00 pm" && $currenttime <= "03:59 pm") {
             $set = '3';
-        } else if ($currenttime >= "11:00 am" && $currenttime <= "01:00 pm") {
+        } else if ($currenttime >= "04:00 pm" && $currenttime <= "05:00 pm") {
             $set = '4';
         } else {
             $set = 'null';

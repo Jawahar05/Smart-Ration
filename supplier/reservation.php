@@ -180,7 +180,29 @@ if (!$_SESSION['type'] == "supplier") {
                 <div class="filterDiv message">
                     <form action="../reservation/send.php" method="POST">
                         <div class="container-liquid">
-                            <textarea class="home-textarea" placeholder="Enter the message to send." required></textarea>
+                            <textarea name ="message" class="home-textarea" placeholder="Enter the message to send." required></textarea>
+                        </div>
+                        <div>
+                        <div class="row form-group mt-2">
+                            <div class="col-sm-2">
+                                <label>Contact number</label>
+                            </div>
+                            <div class="col-sm-3">
+                            <?php
+                            include("../log/dbconnect.php");
+
+                            $result = $conn->query("SELECT mobile From cards WHERE store = 'Coimbatore (Central)'");
+                            echo ("<select id='number' class='form-control' name='number'>");
+                            echo ('<option disabled selected>Select contact number</option>');
+                            while ($row = $result->fetch_assoc()) {
+                                unset($store_name);
+                                $mobile = $row['mobile'];
+                                echo ('<option value=" ' . $mobile . '"  >' . $mobile . '</option>');
+                            }
+                            echo "</select>";
+                            ?>
+                            </div>
+                        </div>
                         </div>
                         <div>
                             <button class="btn mt-3" name="send" type="submit">Send</button>

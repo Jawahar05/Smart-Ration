@@ -35,9 +35,12 @@ if(isset($_POST['calendarreset'])) {
 if(isset($_POST['rearange'])) {
     // update calendar for schedules passed
     //current date
-    $currentdate = date('Y-m-d', strtotime($date .' +1 day'));
-    $updateschdl = "UPDATE cards SET reservation_set = '4', reservation_date = '$currentdate' WHERE reservation_status = '1' AND reservation_date <= 'date('Y-m-d')' ";
-    mysqli_connect($conn, $updateschdl);
+    $datetime = new DateTime('tomorrow');
+    $currentdate = $datetime->format('Y-m-d');;
+    echo($currentdate);
+    $predate = date('Y-m-d');
+    $updateschdl = "UPDATE cards SET reservation_set = '4', reservation_date = '$currentdate' WHERE reservation_status = '1' AND reservation_date <= '$predate' ";
+    mysqli_query($conn, $updateschdl);
 
     $_SESSION['newmonth'] = "Rearrange of schedule success.";
     header("Location:../supplier/reservation.php");

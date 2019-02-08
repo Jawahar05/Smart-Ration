@@ -1,18 +1,24 @@
 <?php
 // include dbconnection
 include('../log/dbconnect.php');
+include('../reservation/send.php');
 
-//isset variable
-if (isset($_POST['check'])) {
-    $day = $_POST['msg_input'];
-    $mobile = $_POST['mobile'];
+//on recieve of message from api
+    $day = $_REQUEST["content"];
+    $mobe = $_REQUEST["sender"];
 
     $date = substr($day, -2);
-    echo($date);
+    $mobile = substr($mobe, -10);
+
+    $insert = "INSERT INTO message_data (number, content) VALUES ('$mobile','$date')";
+
+    mysqli_query($conn, $insert);
 
 
     if ($date <= date('d')) {
-        echo("Date must not be of past date");
+        $reply = ("Date must not be of past date");
+        sendmsg($mobile, $reply);
+        exit();
     } else {
         $check = "SELECT *FROM cards WHERE mobile = $mobile";
         $execute = mysqli_query($conn, $check);
@@ -22,14 +28,17 @@ if (isset($_POST['check'])) {
             $rows = mysqli_fetch_assoc($execute);
 
             // To check wether they alerady bought the products or not
-            if($rows['status'] == "1"){
-                echo("You had bought for this month. <br> Please visit on next month.");
+            if ($rows['status'] == "1") {
+                $reply = ("You had bought for this month. <br> Please visit on next month.");
+                sendmsg($mobile, $reply);
                 exit();
             }
 
             // is alerady reserved condition check
             if ($rows['reservation_status'] == 1) {
-                echo ("You have alerady reserved on '$rows[reservation_date]' SET '$rows[reservation_set]");
+                $reply =  ("You have alerady reserved on '$rows[reservation_date]' SET '$rows[reservation_set]");
+                sendmsg($mobile, $reply);
+                exit();
             }
             // alerady reserved else condition
             else {
@@ -50,7 +59,9 @@ if (isset($_POST['check'])) {
     
                         // Checking wether the day is filled or not
                         if ($row['day'] == $perday) {
-                            echo ($date . " is already filled please select some other days..<br>");
+                            $reply = ($date . " is already filled please select some other days..<br>");
+                            sendmsg($mobile, $reply);
+                            exit();
 
                         } 
                         
@@ -68,8 +79,9 @@ if (isset($_POST['check'])) {
                                 $update = "UPDATE calendar SET set_1 = '$set1' WHERE date_cal = '$date'";
                                 mysqli_query($conn, $update);
 
-                                echo ("Reserved on the date of " . $appointdate . " and SET is 1. <br> VISIT the shop at 9 AM.");
-    
+                                $reply =  ("Reserved on the date of " . $appointdate . " and SET is 1. <br> VISIT the shop at 9 AM.");
+                                sendmsg($mobile, $reply);
+                                exit();
     
                                 // Checking for set 2
                             } else if ($set2 < $perset) {
@@ -82,8 +94,9 @@ if (isset($_POST['check'])) {
                                 $update = "UPDATE calendar SET set_2 = '$set2' WHERE date_cal = '$date'";
                                 mysqli_query($conn, $update);
 
-                                echo ("Reserved on the date of " . $appointdate . " and SET is 2. <br> VISIT the shop at 11 AM.");
-    
+                                $reply = ("Reserved on the date of " . $appointdate . " and SET is 2. <br> VISIT the shop at 11 AM.");
+                                sendmsg($mobile, $reply);
+                                exit();
     
                                 // Checking for set 3
                             } else if ($set3 < $perset) {
@@ -96,32 +109,39 @@ if (isset($_POST['check'])) {
                                 $update = "UPDATE calendar SET set_3 = '$set3' WHERE date_cal = '$date'";
                                 mysqli_query($conn, $update);
 
-                                echo ("Reserved on the date of " . $appointdate . " and SET is 3. <br> VISIT the shop at 2 PM.");
-    
+                                $reply = ("Reserved on the date of " . $appointdate . " and SET is 3. <br> VISIT the shop at 2 PM.");
+                                sendmsg($mobile, $reply);
+                                exit();
     
                                 // executes if all sets are filled
                             } else {
                                 $update = "UPDATE calendar SET day = '$perday' WHERE date_cal = '$date'";
                                 mysqli_query($conn, $update);
-                                echo ($date . " is already filled please select some other days..<br>");
-
+                                $reply = ($date . " is already filled please select some other days..<br>");
+                                sendmsg($mobile, $reply);
+                                exit();
                             }
                         }
                     } 
                     
                     // failure condition in case of holiday calendar
                     else {
-                        echo ($date . " is a holiday please select some other days..<br>");
+                        $reply = ($date . " is a holiday please select some other days..<br>");
+                        sendmsg($mobile, $reply);
+                        exit();
                     }
                 }
             }
     
             //mobile number verification failure condition
         } else {
-            echo ("Mobile number dosen't exist..!<br>Please make sure that you had send the message from registered mobile number");
+            $reply = ("Mobile number dosen't exist..!
+            Please make sure that you had send the message from registered mobile number");
+            sendmsg($mobile, $reply);
+            exit();
         }
 
 
     }
-}
+// }
 ?>

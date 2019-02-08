@@ -47,7 +47,7 @@ if (isset($_POST['newsubmit'])) {
             exit();
         } else {
              //query
-            $addvalue = "INSERT INTO worker_login 
+            $addvalue = "INSERT INTO worker_login
             (worker_name, password, position, mobile, mail, store_name, taluk, district, date_joined) VALUES 
             ('$workername', '$password', '$position', '$mobile', '$email', '$store', '$taluk', '$district', '$datejoined')";
 
